@@ -1,123 +1,104 @@
 <!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Les Arcades Chatou</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>La Carte - Les Arcades</title>
 
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chonburi&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css">
 </head>
 <body>
-<header>
-    <h1>Les Arcades-Menu</h1>
-    <nav class="navbar">
-        <ul>
-            <li><a href="file:///home/etu/e-mthomas6/restaurant/restaurant.htm">Accueil</a></li>
-            <li><a href="file:///home/etu/e-mthomas6/restaurant/menu.htm">La Carte</a></li>
-            <li><a href="#">Vins</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-  </header>
-<main>
-	<form action="/recherche" method="get" class="search-form">
-		<label for="q" class="sr-only">Rechercher un plat</label>
-		<input id="q" type="text" name="q" placeholder="Rechercher un plat">
-		<button type="submit">Rechercher</button>
-	</form>
-<h1 class="titre_spe"><u><i>Apéritifs</i></u></h1>
-<table>
-	<tr>
-		<td class="plat">Kir Royal</td>
-		<td class="prix">6€</td>
-	</tr>
-	<tr>
-		<td class="plat">Cocktail Maison (sans alcool)</td>
-		<td class="prix">5€</td>
-	</tr>
-	<tr>
-    		<td class="plat">Ricard / Pastis</td>
-    		<td class="prix">4€</td>
-	</tr>
-</table>
 
-<h1 class="titre_spe"><u><i>Entrées</i></u></h1>
-<table>
-	<tr>
-		<td class="plat">Brick à l'œuf</td>
-		<td class="prix">7€</td>
-	</tr>
-	<tr>
-		<td class="plat">Salade Méchouia</td>
-		<td class="prix">8€</td>
-	</tr>
-	<tr>
-		<td class="plat">Chorba (Soupe traditionnelle)</td>
-		<td class="prix">7€</td>
-	</tr>
-</table>
-<h1 class="titre_spe"><u><i>Couscous</u></i></h1>
-<table>
-	<tr>
-		<td class="plat">Couscous du chef</td>
-		<td class="prix">26€</td>
-	</tr>
-	<tr>
-		<td class="plat">Couscous Royal</td>
-		<td class="prix">24€</td>
-	</tr>
-	<tr>
-		<td class="plat">Couscous Berbère</td>
-		<td class="prix">22€</td>
-	</tr>
-	<tr>
-		<td class="plat">Couscous Merguez</td>
-		<td class="prix">25€</td>
-	</tr>
-	<tr>
-		<td class="plat">Couscous Légumes</td>
-		<td class="prix">15€</td>
-	</tr>
-</table>
-<h1 class="titre_spe"><u><i>Desserts</i></u></h1>
-<table>
-	<tr>
-		<td class="plat">Pâtisseries Orientales (3 pièces)</td>
-		<td class="prix">6€</td>
-	</tr>
-	<tr>
-		<td class="plat">Orange à la cannelle</td>
-		<td class="prix">5€</td>
-	</tr>
-	<tr>
-		<td class="plat">Loukoum</td>
-		<td class="prix">3€</td>
-	</tr>
-</table>
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="#">Livraison</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <a href="inscription.htm">Inscription</a> / <a href="connection.htm">Connexion</a>
+            </div>
+        </div>
+    </header>
 
-<h1 class="titre_spe"><u><i>Boissons & Thé</i></u></h1>
-<table>
-	<tr>
-		<td class="plat">Thé à la menthe fraîche</td>
-		<td class="prix">3€</td>
-	</tr>
-	<tr>
-		<td class="plat">Thé aux pignons</td>
-		<td class="prix">4€</td>
-	</tr>
-	<tr>
-		<td class="plat">Vin du Maghreb (Bouteille)</td>
-		<td class="prix">18€</td>
-	</tr>
-	<tr>
-		<td class="plat">Soda / Jus de fruits</td>
-		<td class="prix">4€</td>
-	</tr>
-</table>
+    <h2 class="titre_spe">Pour Commencer</h2>
+    <table>
+        <tr>
+            <td>
+                Salade Méchouia
+                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Poivrons grillés, tomates, ail et huile d'olive</small>
+            </td>
+            <td class="prix">12€</td>
+        </tr>
+        <tr>
+            <td>
+                Brick à l'Oeuf
+                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Feuille croustillante, oeuf coulant, thon</small>
+            </td>
+            <td class="prix">9€</td>
+        </tr>
+        <tr>
+            <td>Harira "Maison"</td>
+            <td class="prix">11€</td>
+        </tr>
+    </table>
 
-</main>
+    <h2 class="titre_spe">Nos Couscous & Tajines</h2>
+    <table>
+        <tr>
+            <td>Couscous Royal (Agneau, Poulet, Merguez)</td>
+            <td class="prix">24€</td>
+        </tr>
+        <tr>
+            <td>
+                Tajine d'Agneau aux Pruneaux
+                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Amandes torréfiées et sésame</small>
+            </td>
+            <td class="prix">22€</td>
+        </tr>
+        <tr>
+            <td>Tajine de Poulet Citron Confit</td>
+            <td class="prix">20€</td>
+        </tr>
+        <tr>
+            <td>Couscous Végétarien (7 Légumes)</td>
+            <td class="prix">18€</td>
+        </tr>
+    </table>
+
+    <h2 class="titre_spe">Douceurs & Boissons</h2>
+    <table>
+        <tr>
+            <td>Thé à la Menthe (La théière)</td>
+            <td class="prix">6€</td>
+        </tr>
+        <tr>
+            <td>Assortiment de Pâtisseries Orientales</td>
+            <td class="prix">9€</td>
+        </tr>
+        <tr>
+            <td>Oranges à la Cannelle</td>
+            <td class="prix">7€</td>
+        </tr>
+    </table>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Les Arcades</h3>
+            <p>Ouvert tous les jours de 12h à 23h</p>
+            <p class="contact-info">Tel : 01 23 45 67 89</p>
+            <p>5 Bd de la République 78400 Chatou</p>
+        </div>
+    </footer>
+
 </body>
 </html>

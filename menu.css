@@ -1,98 +1,135 @@
-body{
-      font-family: 'Chonburi', sans-serif;
-      background-color: #FFF8DC;
-      color: #2F4F4F;
-      margin: 0;
-      padding: 0;
-      padding-bottom: 100px;
-}
-header{
-	text-align: center;
-	background-color: #8B4513;
-	color: #DAA520;
-	padding: 20px;
-}
-.navbar {
-    margin-top: 20px; 
-    border-top: 1px solid #DAA520; 
-    padding-top: 15px;
+/* --- BASE & COULEURS : THÈME "UN THÉ AU SAHARA" --- */
+:root {
+    /* -- COULEURS GLOBALES -- */
+    --bg-color: #060B19;       /* Bleu nuit profond */
+    --text-color: #E8F1F5;     /* Blanc bleuté (Lumière de lune) */
+    --gold-color: #E68C7C;     /* Terracotta / Sable (Accent) */
+    --muted-color: #8FA3BF;    /* Gris bleu pour les textes secondaires */
+    --border-color: rgba(230, 140, 124, 0.3); /* Ligne subtile */
+
+    /* -- POLICES -- */
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
 }
 
-.navbar ul {
-    list-style-type: none; 
+body {
+    background-color: var(--bg-color);
+    /* Le même dégradé atmosphérique que l'accueil */
+    background: linear-gradient(180deg, #02050E 0%, #1B335F 100%);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: var(--font-body);
     margin: 0;
     padding: 0;
-    display: flex; 
-    justify-content: center; 
-    gap: 40px; 
-}
-.navbar a {
-    text-decoration: none; 
-    color: #DAA520; 
-    font-size: 18px;
-    font-family: 'Chonburi', sans-serif;
-    text-transform: uppercase; 
-    padding-bottom: 5px; 
-    transition: all 0.3s ease; 
+    padding-bottom: 100px;
+    line-height: 1.6;
 }
 
-.navbar a:hover {
-    color: #FFF8DC;
-    border-bottom: 3px solid #FFF8DC; 
-}
-.search-form{
-	display: flex;
-	gap: 10px;
-	padding: 20px;
-	max-width: 600px;
-	margin: 0 auto;
+/* --- HEADER & NAVIGATION --- */
+header {
+    text-align: center;
+    background-color: transparent; /* On enlève le fond marron */
+    padding: 20px 40px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.search-form input{
-	flex: 1;
-	padding: 8px;
+
 }
 
-.search-form button{
-	padding: 8px 12px;
-	cursor: pointer;
+/* --- FORMULAIRE DE RECHERCHE --- */
+.search-form {
+    display: flex;
+    gap: 10px;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
-.titre_spe{
-	color: #8B4513;
-	text-align: center;
-}	
-table{
 
-	color: #8B4513;
-	border-collapse: collapse;
-	margin: 0 auto;
-	width: 90%; 
-	max-width: 800px;
-	padding: 20px;
-	border-collapse: collapse;
-	font-size: 20px;
+.search-form input {
+    flex: 1;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fond transparent sombre */
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    border-radius: 2px;
 }
+
+.search-form input::placeholder {
+    color: var(--muted-color);
+}
+
+.search-form button {
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color: var(--gold-color); /* Bouton couleur Sable */
+    color: #2A1C24; /* Texte foncé pour le contraste */
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.search-form button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* --- TITRES SPÉCIAUX --- */
+.titre_spe {
+    color: var(--gold-color);
+    text-align: center;
+    font-family: var(--font-title); /* Playfair Display */
+    font-size: 2.5rem;
+    margin-top: 40px;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+    font-weight: 400;
+}    
+
+/* --- TABLEAU (MENU) --- */
+table {
+    color: var(--text-color);
+    border-collapse: collapse;
+    margin: 40px auto;
+    width: 90%; 
+    max-width: 800px;
+    padding: 20px;
+    font-size: 1.1rem;
+    background-color: rgba(19, 30, 58, 0.4); /* Fond très léger pour lisibilité */
+    backdrop-filter: blur(5px);
+    border-radius: 4px;
+}
+
 td {
-	padding: 15px 0; 
-	border-top: 1px solid #cbb6a6;    
-	border-bottom: 1px solid #cbb6a6; 
-	margin: 0 auto;
-	
+    padding: 20px 15px; 
+    border-top: none;     
+    border-bottom: 1px dotted var(--border-color); /* Pointillés élégants */
+    font-family: var(--font-title);
 }
 
-.prix{
-	text-align: right;
+/* Suppression de la bordure pour la dernière ligne */
+tr:last-child td {
+    border-bottom: none;
 }
 
+.prix {
+    text-align: right;
+    color: var(--gold-color);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
 
-.sr-only{
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
+/* --- UTILITAIRES --- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }

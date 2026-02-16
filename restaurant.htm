@@ -1,56 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Les Arcades Chatou</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Les Arcades - Restaurant Oriental</title>
 
-
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Chonburi&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="restaurant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css">
 </head>
 <body>
-<header>
-	<p class="connexion_inscription"><a href="file:///home/etu/e-mthomas6/restaurant/inscription.htm">Inscription</a>/<a href="file:///home/etu/e-mthomas6/restaurant/connection.htm">Connection</a></p>
-	<h1 class="titre_restaurant">Les Arcades</h1>
-	<nav class="navbar">
-        <ul>
-            <li><a href="file:///home/etu/e-mthomas6/restaurant/restaurant.htm">Accueil</a></li>
-            <li><a href="file:///home/etu/e-mthomas6/restaurant/menu.htm">La Carte</a></li>
-            <li><a href="#">Vins</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-<img src="https://static.apidae-tourisme.com/filestore/objets-touristiques/images/70/67/26297158.png" alt="Photo des Arcades"></img>
-<main>
 
-	<h1 class="titre_spe"><u><i>Spécialités</u></i></h1>
-	<table>
-		<tr>
-			<td class="plat">Couscous du chef</td>
-			<td class="prix">26€</td>
-		</tr>
-		<tr>
-			<td class="plat">Couscous Royal</td>
-			<td class="prix">24€</td>
-		</tr>
-		<tr>
-			<td class="plat">Couscous Berbère</td>
-			<td class="prix">22€</td>
-		</tr>
-		<tr>
-			<td class="plat">Couscous Merguez</td>
-			<td class="prix">25€</td>
-		</tr>
-		<tr>
-			<td class="plat">Couscous Légumes</td>
-			<td class="prix">15€</td>
-		</tr>
-	</table>
-</main>
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="#">Livraison</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <a href="inscription.htm">Inscription</a> / <a href="connection.htm">Connexion</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="intro-section">
+        <h1 class="main-title">Bienvenue chez Les Arcades</h1>
+        <p class="intro-text">
+            Découvrez une cuisine orientale authentique et raffinée.<br>
+            Situé au cœur de la ville, Les Arcades est le lieu de la gastronomie<br>
+            dédié aux saveurs de l'Orient.
+        </p>
+    </section>
+
+    <section class="grid-layout">
+        
+        <div class="grid-item photo-container">
+             <img src="https://www.thuriesmagazine.fr/sites/default/files/styles/recette_header/public/recettes/couscous-thon-frais-agadir.jpg" alt="Couscous au thon frais">
+        </div>
+
+        <div class="grid-item text-content">
+            <h2>L'Art du Couscous</h2>
+            <p>
+                Nos chefs préparent chaque jour la semoule selon la tradition.
+                Des produits frais, des épices choisies avec soin et un savoir-faire
+                transmis de génération en génération.
+            </p>
+        </div>
+
+        <div class="grid-item text-content">
+            <h2>Une Ambiance Chaleureuse</h2>
+            <p>
+                Profitez d'un cadre unique pour vos dîners en famille ou entre amis.
+                Les Arcades, c'est avant tout une histoire de partage.
+            </p>
+        </div>
+
+        <div class="grid-item photo-container">
+             <img src="https://www.thuriesmagazine.fr/sites/default/files/styles/recette_header/public/recettes/couscous-thon-frais-agadir.jpg" alt="Plat signature Les Arcades">
+        </div>
+
+    </section>
+
+    <section class="menu-section">
+        <h2 class="menu-title">Spécialités</h2>
+        <p class="subtitle">L'essence de notre cuisine</p>
+
+        <div class="menu-list">
+            <div class="menu-item">
+                <span class="plat">Couscous du Chef</span>
+                <span class="ligne"></span>
+                <span class="prix">26€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Royal</span>
+                <span class="ligne"></span>
+                <span class="prix">24€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Berbère</span>
+                <span class="ligne"></span>
+                <span class="prix">22€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Merguez</span>
+                <span class="ligne"></span>
+                <span class="prix">25€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Légumes</span>
+                <span class="ligne"></span>
+                <span class="prix">15€</span>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="number">30</span>
+                <span class="label">Ans d'expérience</span>
+            </div>
+            <div class="stat-box">
+                <span class="number">55</span>
+                <span class="label">Couverts</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Les Arcades</h3>
+            <p>Ouvert tous les jours de 12h à 23h</p>
+            <p class="contact-info">Tel : 01 23 45 67 89</p>
+            <p>5 Bd de la République 78400 Chatou</p>
+        </div>
+    </footer>
+
 </body>
-
 </html>

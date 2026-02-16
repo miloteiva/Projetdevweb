@@ -1,0 +1,98 @@
+body{
+      font-family: 'Chonburi', sans-serif;
+      background-color: #FFF8DC;
+      color: #2F4F4F;
+      margin: 0;
+      padding: 0;
+      padding-bottom:50px;
+    }
+header{
+	background-color: #8B4513;
+	color: #DAA520;
+	padding: 20px;
+}
+.navbar {
+    margin-top: 20px; 
+    border-top: 1px solid #DAA520; 
+    padding-top: 15px;
+}
+
+.navbar ul {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+    gap: 40px; 
+}
+
+.navbar a {
+    text-decoration: none; 
+    color: #DAA520; 
+    font-size: 18px;
+    font-family: 'Chonburi', sans-serif;
+    text-transform: uppercase; 
+    padding-bottom: 5px; 
+    transition: all 0.3s ease; 
+}
+
+.navbar a:hover {
+    color: #FFF8DC;
+    border-bottom: 3px solid #FFF8DC; 
+}
+.connexion_inscription{
+	margin: 0;
+      	padding: 0;
+	text-align: right;
+	font-size: 10px;
+    }
+
+.titre_restaurant{
+	text-align: center;
+	
+    }
+
+.titre_spe{
+	color: #8B4513;
+	text-align: center;
+}	
+table{
+
+	color: #8B4513;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 90%; 
+	max-width: 800px;
+	padding: 20px;
+	border-collapse: collapse;
+	font-size: 20px;
+}
+td {
+	padding: 15px 0; 
+	border-top: 1px solid #cbb6a6;    
+	border-bottom: 1px solid #cbb6a6; 
+	margin: 0 auto;
+	
+}
+
+.prix{
+	text-align: right;
+}
+
+
+.sr-only{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+img{
+	padding: 50px;
+	display: block;
+	margin: 0 auto;
+}

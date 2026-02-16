@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>La Carte - Les Arcades</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="restaurant.css">
+    <link rel="stylesheet" href="menu.css">
 </head>
 <body>
 
@@ -19,7 +18,7 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="restaurant.htm">Accueil</a></li>
-                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="menu.htm" class="active">La Carte</a></li>
                     <li><a href="#">Livraison</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
@@ -30,75 +29,106 @@
         </div>
     </header>
 
-    <h2 class="titre_spe">Pour Commencer</h2>
-    <table>
-        <tr>
-            <td>
-                Salade Méchouia
-                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Poivrons grillés, tomates, ail et huile d'olive</small>
-            </td>
-            <td class="prix">12€</td>
-        </tr>
-        <tr>
-            <td>
-                Brick à l'Oeuf
-                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Feuille croustillante, oeuf coulant, thon</small>
-            </td>
-            <td class="prix">9€</td>
-        </tr>
-        <tr>
-            <td>Harira "Maison"</td>
-            <td class="prix">11€</td>
-        </tr>
-    </table>
+    <main class="menu-container">
+        <section class="menu-header">
+            <h1 class="gold-title">Notre Carte</h1>
+            <p class="subtitle">Une odyssée sensorielle entre tradition et modernité</p>
+        </section>
 
-    <h2 class="titre_spe">Nos Couscous & Tajines</h2>
-    <table>
-        <tr>
-            <td>Couscous Royal (Agneau, Poulet, Merguez)</td>
-            <td class="prix">24€</td>
-        </tr>
-        <tr>
-            <td>
-                Tajine d'Agneau aux Pruneaux
-                <br><small style="color:var(--muted-color); font-size:0.8em; font-family:var(--font-body)">Amandes torréfiées et sésame</small>
-            </td>
-            <td class="prix">22€</td>
-        </tr>
-        <tr>
-            <td>Tajine de Poulet Citron Confit</td>
-            <td class="prix">20€</td>
-        </tr>
-        <tr>
-            <td>Couscous Végétarien (7 Légumes)</td>
-            <td class="prix">18€</td>
-        </tr>
-    </table>
+        <div class="grid-menu">
+            <section class="menu-column">
+                <h2 class="category-title">Préludes</h2>
+                <div class="menu-item">
+                    <h3>La Pastilla de l'Atlas</h3>
+                    <p>Feuilleté craquant au pigeon, amandes torréfiées et cannelle fine.</p>
+                    <span class="price">16€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Méchouia Fumée</h3>
+                    <p>Poivrons de saison grillés au feu de bois, ail confit et huile d'olive d'exception.</p>
+                    <span class="price">14€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Gambas au Ras el-Hanout</h3>
+                    <p>Saisies à la plancha, émulsion de coriandre fraîche et citron vert.</p>
+                    <span class="price">19€</span>
+                </div>
+            </section>
 
-    <h2 class="titre_spe">Douceurs & Boissons</h2>
-    <table>
-        <tr>
-            <td>Thé à la Menthe (La théière)</td>
-            <td class="prix">6€</td>
-        </tr>
-        <tr>
-            <td>Assortiment de Pâtisseries Orientales</td>
-            <td class="prix">9€</td>
-        </tr>
-        <tr>
-            <td>Oranges à la Cannelle</td>
-            <td class="prix">7€</td>
-        </tr>
-    </table>
+            <section class="menu-column">
+                <h2 class="category-title">Cœurs de Fête</h2>
+                <div class="menu-item">
+                    <h3>Le Couscous Signature</h3>
+                    <p>Semoule travaillée à la main, agneau de sept heures et légumes oubliés.</p>
+                    <span class="price">32€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Tajine d'Or de Casablanca</h3>
+                    <p>Poulet fermier, citrons confits, olives violettes et safran pur.</p>
+                    <span class="price">28€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Noix de Saint-Jacques d'Orient</h3>
+                    <p>Sur un lit de purée de pois chiches au cumin et jus de rôti corsé.</p>
+                    <span class="price">34€</span>
+                </div>
+            </section>
+
+            <section class="menu-column">
+                <h2 class="category-title">Douceurs</h2>
+                <div class="menu-item">
+                    <h3>L'Orange de Marrakech</h3>
+                    <p>Fines lamelles à la fleur d'oranger, sorbet menthe et éclats de pistache.</p>
+                    <span class="price">12€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Perle de Gazelle</h3>
+                    <p>Réinterprétation de la pâtisserie fine, crème légère au miel et amande.</p>
+                    <span class="price">13€</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Le Thé Gourmand</h3>
+                    <p>Thé à la menthe traditionnelle accompagné de trois créations du Chef.</p>
+                    <span class="price">15€</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="separator"></div>
+
+        <section class="experience-section">
+            <h2 class="gold-title">Nos Expériences</h2>
+            <div class="experience-grid">
+                <div class="exp-card">
+                    <h3>Sahara</h3>
+                    <p class="exp-detail">Entrée + Plat + Dessert au choix à la carte</p>
+                    <p class="exp-price">45€ / pers</p>
+                </div>
+                <div class="exp-card highlight">
+                    <h3>Quintessence</h3>
+                    <p class="exp-detail">Menu dégustation en 5 temps selon l'inspiration du Chef</p>
+                    <p class="exp-price">75€ / pers</p>
+                </div>
+                <div class="exp-card">
+                    <h3>L'Éclipse</h3>
+                    <p class="exp-detail">Menu Prestige en 7 services avec accord mets & vins</p>
+                    <p class="exp-price">110€ / pers</p>
+                </div>
+            </div>
+            <p class="tax-mention">Prix nets TTC - Service compris</p>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
             <h3>Les Arcades</h3>
             <p>Ouvert tous les jours de 12h à 23h</p>
-            <p class="contact-info">Tel : 01 23 45 67 89</p>
             <p>5 Bd de la République 78400 Chatou</p>
         </div>
     </footer>
+
+</body>
+</html>
 
 </body>
 </html>

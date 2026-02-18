@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Connexion - Les Arcades</title>
+    <title>Inscription - Les Arcades</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,23 +34,27 @@
     </header>
 
     <main class="login-page">
+        <h1 class="main-title-profile">Inscription</h1>
+
         <div class="login-container">
+            <h2 class="form-subtitle">Créer un compte</h2>
+            
             <form class="login-form">
-	   	<div class="input-group">
-		    <label for="Nom">Nom</label>
-		    <input type="Nom" id="Nom" name="Nom" required>
+                <div class="input-group">
+                    <label for="Nom">Nom</label>
+                    <input type="text" id="Nom" name="Nom" required>
                 </div>
                 <div class="input-group">
-		    <label for="Prénom">Prénom</label>
-		    <input type="Prénom" id="Prénom" name="Prénom" required>
+                    <label for="Prénom">Prénom</label>
+                    <input type="text" id="Prénom" name="Prénom" required>
                 </div>
                 <div class="input-group">
-		    <label for="Adresse">Adresse</label>
-		    <input type="Adresse" id="Adresse" name="Adresse" required>
+                    <label for="Adresse">Adresse</label>
+                    <input type="text" id="Adresse" name="Adresse" required>
                 </div>
                 <div class="input-group">
-		    <label for="Téléphone">Téléphone</label>
-		    <input type="Téléphone" id="Téléphone" name="Téléphone" required>
+                    <label for="Téléphone">Téléphone</label>
+                    <input type="tel" id="Téléphone" name="Téléphone" required>
                 </div>
                 <div class="input-group">
                     <label for="email">Adresse Email</label>
@@ -62,8 +66,7 @@
                     <input type="password" id="password" name="password" required>
                 </div>
 
-                <button type="submit" class="btn-sign-in">Inscription</button>
-
+                <button type="submit" class="btn-sign-in">S'inscrire</button>
             </form>
         </div>
     </main>

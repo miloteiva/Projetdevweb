@@ -1,0 +1,164 @@
+/* --- MISE EN PAGE DU PROFIL --- */
+
+.profile-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+/* --- CARTES DE PROFIL --- */
+
+.profile-card {
+    background-color: rgba(19, 30, 58, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 140, 124, 0.2);
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.profile-card h2 {
+    font-family: var(--font-title);
+    color: var(--gold-color);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(230, 140, 124, 0.2);
+    padding-bottom: 10px;
+}
+
+/* --- CHAMPS VIDES (PLACEHOLDERS) --- */
+
+.info-group {
+    margin-bottom: 20px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #8FA3BF;
+    margin-bottom: 8px;
+}
+
+.placeholder-box {
+    width: 100%;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(230, 140, 124, 0.4);
+    border-radius: 4px;
+}
+
+.placeholder-box.tall {
+    height: 80px;
+}
+
+/* --- FIDÉLITÉ --- */
+
+.loyalty-status {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.points-count {
+    display: block;
+    font-size: 3rem;
+    font-family: var(--font-title);
+    color: var(--gold-color);
+}
+
+.progress-container {
+    background: rgba(0, 0, 0, 0.3);
+    height: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 15%; /* Exemple de progression */
+    height: 100%;
+    background: var(--gold-color);
+    box-shadow: 0 0 10px var(--gold-color);
+}
+
+.loyalty-perks {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #8FA3BF;
+}
+
+/* --- TABLEAU DES COMMANDES --- */
+
+.orders-table-container {
+    overflow-x: auto;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.orders-table th {
+    padding: 15px;
+    border-bottom: 1px solid rgba(230, 140, 124, 0.3);
+    font-weight: 500;
+    color: var(--gold-color);
+}
+
+.orders-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.status-pill {
+    background: rgba(230, 140, 124, 0.2);
+    color: var(--gold-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+/* --- BOUTONS --- */
+
+.btn-action {
+    background: transparent;
+    border: 1px solid var(--gold-color);
+    color: var(--gold-color);
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-action:hover {
+    background: var(--gold-color);
+    color: var(--bg-color);
+}
+
+.view-link {
+    color: var(--gold-color);
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    .full-width {
+        grid-column: span 1;
+    }
+}

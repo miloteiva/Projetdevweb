@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Les Arcades - Restaurant Oriental</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="restaurant.css">
 </head>
 <body>
@@ -16,9 +18,13 @@
             <div class="logo">LES ARCADES</div>
             <nav class="navbar">
                 <ul>
-                    <li><a href="restaurant.htm">Le restaurant</a></li>
-                    <li><a href="menu.htm">Réserver</a></li>
-                    <li><a href="#">Atelier/Boutique</a></li>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="livraison.htm">Livraison</a></li>
+                    <li><a href="moncompte.htm">Mon Compte</a></li>
+                    <li><a href="admin.htm">Admin</a></li>
+                    <li><a href="notation.htm">Notation</a></li>
+                    
                 </ul>
             </nav>
             <div class="auth-links">
@@ -27,59 +33,95 @@
         </div>
     </header>
 
-    <main>
-        <section class="grid-layout">
-            <div class="grid-item text-content left-align">
-                <p class="chef-intro">
-                    <span class="highlight">Milo Thomas & Adam Arezki</span>, chefs et propriétaires du restaurant <br>
-                    <span class="logo-text">Les Arcades</span>,
-                </p>
-                <p>
-                    présentent un lieu feutré et apaisant, <br>
-                    totalement pensé pour vous faire <br>
-                    vivre un instant privilégié <br>
-                    en toute discrétion.
-                </p>
-                <p class="location-text">
-                    Situé en plein cœur de Chatou, <br>
-                    à quelques pas de la Seine, <br><br>
-                    Les Arcades est le lieu de la gastronomie orientale.
-                </p>
-            </div>
-            <div class="grid-item photo-container">
-                 <img src="https://images.unsplash.com/photo-1550966841-3ee4ad058bb1?q=80&w=2070" alt="Intérieur Les Arcades">
-            </div>
-        </section>
+    <section class="intro-section">
+        <h1 class="main-title">Bienvenue chez Les Arcades</h1>
+        <p class="intro-text">
+            Découvrez une cuisine orientale authentique et raffinée.<br>
+            Situé au cœur de la ville, Les Arcades est le lieu de la gastronomie<br>
+            dédié aux saveurs de l'Orient.
+        </p>
+    </section>
 
-        <section class="grid-layout">
-            <div class="grid-item photo-container">
-                 <img src="https://images.unsplash.com/photo-1541510910359-d278497b35ee?q=80&w=2070" alt="Table dressée">
-            </div>
-            <div class="grid-item text-content centered">
-                <h2 class="section-title">LES ARCADES</h2>
-                <p class="subtitle">C'est un écrin qui subjuguera <br> votre expérience gastronomique.</p>
-                
-                <div class="formulas">
-                    <p>Plusieurs formules :</p>
-                    <p>— La carte et notre menu en trois mouvements <br> pour le déjeuner.</p>
-                    <p>— Nos menus dégustations :</p>
-                    <p>en cinq ou sept mouvements pour le dîner.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    <section class="grid-layout">
+        
+        <div class="grid-item photo-container">
+             <img src="https://www.thuriesmagazine.fr/sites/default/files/styles/recette_header/public/recettes/couscous-thon-frais-agadir.jpg" alt="Couscous au thon frais">
+        </div>
+
+        <div class="grid-item text-content">
+            <h2>L'Art du Couscous</h2>
+            <p>
+                Nos chefs préparent chaque jour la semoule selon la tradition.
+                Des produits frais, des épices choisies avec soin et un savoir-faire
+                transmis de génération en génération.
+            </p>
+        </div>
+
+        <div class="grid-item text-content">
+            <h2>Une Ambiance Chaleureuse</h2>
+            <p>
+                Profitez d'un cadre unique pour vos dîners en famille ou entre amis.
+                Les Arcades, c'est avant tout une histoire de partage.
+            </p>
+        </div>
+
+        <div class="grid-item photo-container">
+             <img src="https://www.thuriesmagazine.fr/sites/default/files/styles/recette_header/public/recettes/couscous-thon-frais-agadir.jpg" alt="Plat signature Les Arcades">
+        </div>
+
+    </section>
 
     <section class="menu-section">
         <h2 class="menu-title">Spécialités</h2>
+        <p class="subtitle">L'essence de notre cuisine</p>
+
         <div class="menu-list">
-            <div class="menu-item"><span class="plat">Couscous Signature Milo</span><span class="ligne"></span><span class="prix">28€</span></div>
-            <div class="menu-item"><span class="plat">Couscous Royal Arezki</span><span class="ligne"></span><span class="prix">26€</span></div>
-            <div class="menu-item"><span class="plat">Épaule d'agneau confite</span><span class="ligne"></span><span class="prix">32€</span></div>
+            <div class="menu-item">
+                <span class="plat">Couscous du Chef</span>
+                <span class="ligne"></span>
+                <span class="prix">26€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Royal</span>
+                <span class="ligne"></span>
+                <span class="prix">24€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Berbère</span>
+                <span class="ligne"></span>
+                <span class="prix">22€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Merguez</span>
+                <span class="ligne"></span>
+                <span class="prix">25€</span>
+            </div>
+            <div class="menu-item">
+                <span class="plat">Couscous Légumes</span>
+                <span class="ligne"></span>
+                <span class="prix">15€</span>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box">
+                <span class="number">30</span>
+                <span class="label">Ans d'expérience</span>
+            </div>
+            <div class="stat-box">
+                <span class="number">55</span>
+                <span class="label">Couverts</span>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Les Arcades — Ouvert tous les jours — 5 Bd de la République, 78400 Chatou</p>
+        <div class="footer-content">
+            <h3>Les Arcades</h3>
+            <p>Ouvert tous les jours de 12h à 23h</p>
+            <p class="contact-info">Tel : 01 23 45 67 89</p>
+            <p>5 Bd de la République 78400 Chatou</p>
+        </div>
     </footer>
 
 </body>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connexion - Les Arcades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css"> 
+    <link rel="stylesheet" href="inscription.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="#">Livraison</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <a href="inscription.htm">Inscription</a> / <a href="connection.htm">Connexion</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-page">
+        <div class="login-container">
+            <form class="login-form">
+	   	<div class="input-group">
+		    <label for="Nom">Nom</label>
+		    <input type="Nom" id="Nom" name="Nom" required>
+                </div>
+                <div class="input-group">
+		    <label for="Prénom">Prénom</label>
+		    <input type="Prénom" id="Prénom" name="Prénom" required>
+                </div>
+                <div class="input-group">
+		    <label for="Adresse">Adresse</label>
+		    <input type="Adresse" id="Adresse" name="Adresse" required>
+                </div>
+                <div class="input-group">
+		    <label for="Téléphone">Téléphone</label>
+		    <input type="Téléphone" id="Téléphone" name="Téléphone" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn-sign-in">Inscription</button>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

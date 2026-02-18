@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noter ma commande - Les Arcades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css"> 
+    <link rel="stylesheet" href="notation.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="livraison.htm">Livraison</a></li>
+                    <li><a href="moncompte.htm">Mon Compte</a></li>
+                    <li><a href="admin.htm">Admin</a></li>
+                    <li><a href="notation.htm">Notation</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <a href="inscription.htm">Inscription</a> / <a href="connection.htm">Connexion</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="notation-container">
+        <section class="rating-card">
+            <h1 class="main-title">Votre Avis</h1>
+            <p class="intro-text">Merci d'avoir commandé chez <strong>Les Arcades</strong>. <br>Aidez-nous à nous améliorer en notant votre expérience.</p>
+
+            <form action="#" method="post" class="rating-form">
+                
+                <div class="rating-group">
+                    <h3>Qualité des produits</h3>
+                    <div class="stars">
+                        <input type="radio" id="prod-5" name="prod-rating" value="5"><label for="prod-5">★</label>
+                        <input type="radio" id="prod-4" name="prod-rating" value="4"><label for="prod-4">★</label>
+                        <input type="radio" id="prod-3" name="prod-rating" value="3"><label for="prod-3">★</label>
+                        <input type="radio" id="prod-2" name="prod-rating" value="2"><label for="prod-2">★</label>
+                        <input type="radio" id="prod-1" name="prod-rating" value="1"><label for="prod-1">★</label>
+                    </div>
+                </div>
+
+                <div class="rating-group">
+                    <h3>Service de livraison</h3>
+                    <div class="stars">
+                        <input type="radio" id="liv-5" name="liv-rating" value="5"><label for="liv-5">★</label>
+                        <input type="radio" id="liv-4" name="liv-rating" value="4"><label for="liv-4">★</label>
+                        <input type="radio" id="liv-3" name="liv-rating" value="3"><label for="liv-3">★</label>
+                        <input type="radio" id="liv-2" name="liv-rating" value="2"><label for="liv-2">★</label>
+                        <input type="radio" id="liv-1" name="liv-rating" value="1"><label for="liv-1">★</label>
+                    </div>
+                </div>
+
+                <div class="comment-group">
+                    <label for="comments">Un mot sur votre expérience ?</label>
+                    <textarea id="comments" name="comments" placeholder="Le couscous était excellent, la livraison rapide..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Envoyer mon avis</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Les Arcades - Tous droits réservés</p>
+        </div>
+    </footer>
+
+</body>
+</html>

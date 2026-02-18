@@ -8,7 +8,6 @@
     --font-body: 'Montserrat', sans-serif;
 }
 
-/* On s'assure que le body suit la DA de l'accueil */
 body {
     margin: 0;
     padding: 0;
@@ -27,8 +26,9 @@ body {
     text-align: center;
 }
 
+/* Header réduit pour laisser place à la recherche */
 .menu-header {
-    margin-bottom: 100px;
+    margin-bottom: 40px; 
 }
 
 .gold-title {
@@ -46,6 +46,62 @@ body {
     color: var(--muted-blue);
     font-size: 1.1rem;
     letter-spacing: 2px;
+}
+
+/* --- BARRE DE RECHERCHE "SAHARA" (Positionnée entre titre et menu) --- */
+.search-wrapper {
+    max-width: 500px;
+    margin: 0 auto 80px auto; /* Centré, espace important sous la barre vers le menu */
+    padding: 0 20px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(19, 30, 58, 0.4);
+    border: 1px solid rgba(230, 140, 124, 0.3);
+    border-radius: 50px;
+    padding: 5px 5px 5px 20px;
+    transition: 0.3s ease;
+}
+
+.search-form:focus-within {
+    border-color: var(--gold-accent); /* Correction variable */
+    box-shadow: 0 0 15px rgba(230, 140, 124, 0.2);
+}
+
+.search-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: var(--white-light); /* Correction variable */
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: var(--muted-blue);
+    opacity: 0.6;
+}
+
+.search-submit {
+    background: var(--gold-accent); /* Correction variable */
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--navy-deep); /* Correction variable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-submit:hover {
+    transform: scale(1.05);
+    background-color: #f2a698;
 }
 
 /* --- GRILLE DES PLATS --- */
@@ -100,7 +156,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* --- SECTION EXPÉRIENCES (STYLE SCREENSHOT) --- */
+/* --- SECTION EXPÉRIENCES --- */
 .separator {
     width: 60px;
     height: 1px;
@@ -157,21 +213,23 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- NAVBAR ACTIVE --- */
-.navbar a.active {
-    color: var(--gold-accent);
-    border-bottom: 1px solid var(--gold-accent);
+/* --- DIVERS --- */
+.Listes-allergenes {
+    display: block;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--muted-blue);
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-/* --- FOOTER AJUSTEMENT --- */
+.Listes-allergenes:hover {
+    color: var(--gold-accent);
+}
+
 footer {
     border-top: 1px solid rgba(230, 140, 124, 0.1);
     padding: 60px 0;
     opacity: 0.7;
-}
-.Listes-allergenes {
-    margin-top: 30px;
-    font-size: 0.9rem;
-    color: var(--muted-blue);
-    letter-spacing: 1px;
+    text-align: center;
 }

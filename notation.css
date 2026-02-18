@@ -1,0 +1,120 @@
+/* --- MISE EN PAGE DE LA NOTATION --- */
+
+.notation-container {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.rating-card {
+    background: rgba(19, 30, 58, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 140, 124, 0.3);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.rating-card .main-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.rating-form {
+    margin-top: 40px;
+}
+
+/* --- SYSTEME D'ETOILES --- */
+.rating-group {
+    margin-bottom: 30px;
+}
+
+.rating-group h3 {
+    font-family: var(--font-title);
+    color: var(--gold-color);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.stars {
+    display: flex;
+    flex-direction: row-reverse; /* Pour que le hover fonctionne de gauche à droite */
+    justify-content: center;
+    gap: 10px;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 2.5rem;
+    color: rgba(232, 241, 245, 0.2); /* Couleur de base des étoiles vides */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* Hover et Selection */
+.stars label:hover,
+.stars label:hover ~ label,
+.stars input:checked ~ label {
+    color: var(--gold-color);
+    text-shadow: 0 0 10px rgba(230, 140, 124, 0.5);
+}
+
+/* --- CHAMP TEXTE --- */
+.comment-group {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.comment-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #8FA3BF;
+}
+
+.comment-group textarea {
+    width: 100%;
+    height: 100px;
+    background: rgba(6, 11, 25, 0.5);
+    border: 1px solid rgba(230, 140, 124, 0.3);
+    border-radius: 4px;
+    color: var(--text-color);
+    padding: 15px;
+    font-family: var(--font-body);
+    resize: none;
+    box-sizing: border-box;
+}
+
+.comment-group textarea:focus {
+    outline: none;
+    border-color: var(--gold-color);
+}
+
+/* --- BOUTON --- */
+.submit-btn {
+    background-color: var(--gold-color);
+    color: #060B19;
+    border: none;
+    padding: 15px 40px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #E8F1F5;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 140, 124, 0.3);
+}

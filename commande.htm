@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestion des Commandes - Les Arcades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="commande.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="livraison.htm">Livraison</a></li>
+                    <li><a href="moncompte.htm">Mon Compte</a></li>
+                    <li><a href="admin.htm">Admin</a></li>
+                    <li><a href="notation.htm">Notation</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <span>Session Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-header-flex">
+            <h1 class="main-title-profile">Gestion des Commandes</h1>
+            <a href="admin.htm" class="btn-secondary">← Retour Admin</a>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">À Préparer</span>
+            </div>
+            <div class="stat-card highlight-border">
+                <span class="stat-number">0</span>
+                <span class="stat-label">En Livraison</span>
+            </div>
+        </div>
+
+        <section class="admin-card order-section">
+            <div class="section-header">
+                <div class="status-indicator waiting"></div>
+                <h2>Commandes à Préparer</h2>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Client</th>
+                            <th>Détails de la Commande</th>
+                            <th>Heure</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#****</td>
+                            <td><strong>X</strong></td>
+                            <td>X</td>
+                            <td>XX:XX</td>
+                            <td>
+                                <button class="btn-action success">Prête</button>
+                            </td>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="admin-card order-section mt-40">
+            <div class="section-header">
+                <div class="status-indicator delivery"></div>
+                <h2>En cours de Livraison</h2>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Client / Adresse</th>
+                            <th>Livreur</th>
+                            <th>Départ</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#****</td>
+                            <td><strong>X</strong></td>
+                            <td>X</td>
+                            <td>XX:XX</td>
+                            <td>
+                                <button class="btn-action outline">Clôturer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

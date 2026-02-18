@@ -1,0 +1,73 @@
+/* --- COMPLÉMENT GESTION DES COMMANDES --- */
+
+.admin-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.mt-40 { margin-top: 40px; }
+
+/* Indicateurs de statut */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(230, 140, 124, 0.5);
+}
+
+.waiting { background-color: #E68C7C; } /* Couleur Sable/Or de votre charte */
+.delivery { background-color: #8FA3BF; } /* Bleu acier */
+
+/* Boutons d'action */
+.btn-action {
+    padding: 6px 15px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.btn-action.success {
+    background: var(--gold-color);
+    color: var(--bg-color);
+    border: 1px solid var(--gold-color);
+}
+
+.btn-action.success:hover {
+    background: transparent;
+    color: var(--gold-color);
+}
+
+.btn-action.outline {
+    background: transparent;
+    border: 1px solid #8FA3BF;
+    color: #8FA3BF;
+}
+
+.btn-action.outline:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+/* Style spécifique tableau commandes */
+.admin-table td small {
+    color: #5C6B85;
+    display: block;
+    margin-top: 5px;
+}
+
+.highlight-border {
+    border: 1px solid rgba(143, 163, 191, 0.3) !important;
+}

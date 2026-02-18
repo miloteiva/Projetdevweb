@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administration - Les Arcades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="restaurant.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">LES ARCADES</div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="restaurant.htm">Accueil</a></li>
+                    <li><a href="menu.htm">La Carte</a></li>
+                    <li><a href="livraison.htm">Livraison</a></li>
+                    <li><a href="moncompte.htm">Mon Compte</a></li>
+                    <li><a href="admin.htm">Admin</a></li>
+                    <li><a href="notation.htm">Notation</a></li>
+                </ul>
+            </nav>
+            <div class="auth-links">
+                <a href="inscription.htm">Inscription</a> / <a href="connection.htm">Connexion</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <h1 class="main-title-profile">Page Administrateur</h1>
+
+        <div class="admin-stats">
+            <a href="commande.htm" class="stat-card shortcut-card">
+                <span class="stat-number">→</span>
+                <span class="stat-label">Gérer les Commandes</span>
+            </a>
+            
+            <div class="stat-card">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Utilisateurs</span>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">0€</span>
+                <span class="stat-label">CA du jour</span>
+            </div>
+        </div>
+
+        <section class="admin-card full-width">
+            <div class="admin-header-actions">
+                <h2>Liste des Utilisateurs</h2>
+                
+                <div class="admin-nav-group">
+                    <a href="commande.htm" class="btn-secondary">Voir les Commandes</a>
+                    
+                    
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nom & Prénom</th>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                            <th>Commandes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>--/--/----</td>
+                            <td>0</td>
+                            <td>
+                                <button class="action-link edit">Détails</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

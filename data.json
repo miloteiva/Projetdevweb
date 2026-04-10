@@ -1,0 +1,238 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "nom": "Admin",
+            "prenom": "Principal",
+            "email": "admin1@arcades.fr",
+            "password": "123",
+            "role": "admin"
+        },
+        {
+            "id": 2,
+            "nom": "Admin",
+            "prenom": "Secondaire",
+            "email": "admin2@arcades.fr",
+            "password": "123",
+            "role": "admin"
+        },
+        {
+            "id": 3,
+            "nom": "Chef",
+            "prenom": "Resto",
+            "email": "resto@arcades.fr",
+            "password": "123",
+            "role": "restaurateur"
+        },
+        {
+            "id": 4,
+            "nom": "Livreur",
+            "prenom": "Express",
+            "email": "livreur@arcades.fr",
+            "password": "123",
+            "role": "livreur"
+        },
+        {
+            "id": 5,
+            "nom": "Dupont",
+            "prenom": "Jean",
+            "email": "client1@test.com",
+            "password": "123",
+            "role": "client"
+        },
+        {
+            "id": 6,
+            "nom": "Martin",
+            "prenom": "Sophie",
+            "email": "client2@test.com",
+            "password": "123",
+            "role": "client"
+        },
+        {
+            "id": 7,
+            "nom": "Bernard",
+            "prenom": "Luc",
+            "email": "client3@test.com",
+            "password": "123",
+            "role": "client"
+        },
+        {
+            "id": 8,
+            "nom": "Petit",
+            "prenom": "Emma",
+            "email": "client4@test.com",
+            "password": "123",
+            "role": "client"
+        },
+        {
+            "id": 9,
+            "nom": "Robert",
+            "prenom": "Paul",
+            "email": "client5@test.com",
+            "password": "123",
+            "role": "client"
+        },
+        {
+            "id": 10,
+            "nom": "Arezki",
+            "prenom": "Adam",
+            "adresse": "17 rue avignon",
+            "telephone": "06445281891",
+            "email": "adamarezkii@gmail.com",
+            "password": "Chocolag@6",
+            "role": "client"
+        },
+        {
+            "id": 11,
+            "nom": "Arezki",
+            "prenom": "Adam",
+            "adresse": "17 rue avignon",
+            "telephone": "06445281891",
+            "email": "adamarezki@gmail.com",
+            "password": "1234",
+            "role": "client"
+        }
+    ],
+    "plats": [
+        {
+            "id": 1,
+            "categorie": "Pr\u00e9ludes",
+            "nom": "La Pastilla de l'Atlas",
+            "allergenes": "1,3,8",
+            "desc": "Feuillet\u00e9 craquant au pigeon, amandes torr\u00e9fi\u00e9es et cannelle fine.",
+            "prix": 16
+        },
+        {
+            "id": 2,
+            "categorie": "Pr\u00e9ludes",
+            "nom": "M\u00e9chouia Fum\u00e9e",
+            "allergenes": "",
+            "desc": "Poivrons de saison grill\u00e9s au feu de bois, ail confit et huile d'olive.",
+            "prix": 14
+        },
+        {
+            "id": 3,
+            "categorie": "Pr\u00e9ludes",
+            "nom": "Gambas au Ras el-Hanout",
+            "allergenes": "2,7",
+            "desc": "Saisies \u00e0 la plancha, \u00e9mulsion de coriandre fra\u00eeche et citron vert.",
+            "prix": 19
+        },
+        {
+            "id": 4,
+            "categorie": "Pr\u00e9ludes",
+            "nom": "Briouates au Fromage",
+            "allergenes": "1,7",
+            "desc": "Croustillants farcis au fromage frais et menthe.",
+            "prix": 12
+        },
+        {
+            "id": 5,
+            "categorie": "Pr\u00e9ludes",
+            "nom": "Zaalouk d'Aubergines",
+            "allergenes": "",
+            "desc": "Caviar d'aubergines aux \u00e9pices douces.",
+            "prix": 11
+        },
+        {
+            "id": 6,
+            "categorie": "C\u0153urs de F\u00eate",
+            "nom": "Le Couscous Signature",
+            "allergenes": "1",
+            "desc": "Semoule travaill\u00e9e \u00e0 la main, agneau de sept heures et l\u00e9gumes oubli\u00e9s.",
+            "prix": 32
+        },
+        {
+            "id": 7,
+            "categorie": "C\u0153urs de F\u00eate",
+            "nom": "Tajine d'Or de Casablanca",
+            "allergenes": "12",
+            "desc": "Poulet fermier, citrons confits, olives violettes et safran pur.",
+            "prix": 28
+        },
+        {
+            "id": 8,
+            "categorie": "C\u0153urs de F\u00eate",
+            "nom": "Noix de Saint-Jacques d'Orient",
+            "allergenes": "14",
+            "desc": "Sur un lit de pur\u00e9e de pois chiches au cumin et jus de r\u00f4ti cors\u00e9.",
+            "prix": 34
+        },
+        {
+            "id": 9,
+            "categorie": "C\u0153urs de F\u00eate",
+            "nom": "Couscous Royal",
+            "allergenes": "1",
+            "desc": "Merguez, poulet, agneau, l\u00e9gumes confits.",
+            "prix": 29
+        },
+        {
+            "id": 10,
+            "categorie": "C\u0153urs de F\u00eate",
+            "nom": "Tajine Kefta aux \u0152ufs",
+            "allergenes": "3",
+            "desc": "Boulettes de b\u0153uf \u00e9pic\u00e9es, sauce tomate.",
+            "prix": 24
+        },
+        {
+            "id": 11,
+            "categorie": "Douceurs",
+            "nom": "L'Orange de Marrakech",
+            "allergenes": "8",
+            "desc": "Fines lamelles \u00e0 la fleur d'oranger, sorbet menthe et \u00e9clats de pistache.",
+            "prix": 12
+        },
+        {
+            "id": 12,
+            "categorie": "Douceurs",
+            "nom": "Perle de Gazelle",
+            "allergenes": "1,3,7,8",
+            "desc": "R\u00e9interpr\u00e9tation de la p\u00e2tisserie fine, cr\u00e8me l\u00e9g\u00e8re au miel et amande.",
+            "prix": 13
+        },
+        {
+            "id": 13,
+            "categorie": "Douceurs",
+            "nom": "Le Th\u00e9 Gourmand",
+            "allergenes": "1,7,8",
+            "desc": "Th\u00e9 \u00e0 la menthe traditionnelle accompagn\u00e9 de trois cr\u00e9ations du Chef.",
+            "prix": 15
+        },
+        {
+            "id": 14,
+            "categorie": "Douceurs",
+            "nom": "Makrout aux Dattes",
+            "allergenes": "1",
+            "desc": "Semoule au miel et c\u0153ur de dattes fondantes.",
+            "prix": 10
+        },
+        {
+            "id": 15,
+            "categorie": "Douceurs",
+            "nom": "Salade de Fruits Orientale",
+            "allergenes": "",
+            "desc": "Fruits de saison, sirop \u00e0 la fleur d'oranger.",
+            "prix": 11
+        }
+    ],
+    "menus": [
+        {
+            "id": 1,
+            "nom": "Sahara",
+            "desc": "Entr\u00e9e + Plat + Dessert au choix \u00e0 la carte",
+            "prix": 45
+        },
+        {
+            "id": 2,
+            "nom": "Quintessence",
+            "desc": "Menu d\u00e9gustation en 5 temps selon l'inspiration du Chef",
+            "prix": 75
+        },
+        {
+            "id": 3,
+            "nom": "L'\u00c9clipse",
+            "desc": "Menu Prestige en 7 services avec accord mets & vins",
+            "prix": 110
+        }
+    ]
+}

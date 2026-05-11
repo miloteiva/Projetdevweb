@@ -1,11 +1,29 @@
 <?php
 session_start();
-// Vérification stricte du rôle
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'client') {
     header("Location: connection.php");
     exit();
 }
+
 $user = $_SESSION['user'];
+$data = json_decode(file_get_contents('data.json'), true);
+
+// Récupérer le user à jour (au cas où il a été modifié)
+foreach ($data['users'] as $u) {
+    if ($u['id'] === $user['id']) { $user = $u; $_SESSION['user'] = $u; break; }
+}
+
+// Récupérer les commandes du client
+$mesCommandes = [];
+if (isset($data['commandes'])) {
+    foreach ($data['commandes'] as $cmd) {
+        if ($cmd['id_client'] === $user['id']) {
+            $mesCommandes[] = $cmd;
+        }
+    }
+}
+// Plus récentes en premier
+$mesCommandes = array_reverse($mesCommandes);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,124 +33,131 @@ $user = $_SESSION['user'];
     <title>Mon Compte - Les Arcades</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        /* --- BASE --- */
-        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; }
-        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; line-height: 1.6; }
-        header { background-color: transparent; padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); }
-        .navbar ul { display: flex; gap: 30px; }
-        .navbar a { font-size: 0.8rem; text-transform: uppercase; color: var(--text-color); }
-        .navbar a:hover { color: var(--gold-color); }
-        .auth-links { font-size: 0.75rem; color: #8FA3BF; }
-
-        /* --- MONCOMPTE.CSS --- */
-        .profile-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .main-title { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold-color); margin-bottom: 40px; }
-        .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .full-width { grid-column: span 2; }
-        .profile-card { background-color: rgba(19, 30, 58, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(230, 140, 124, 0.2); padding: 30px; border-radius: 4px; }
-        .profile-card h2 { font-family: var(--font-title); color: var(--gold-color); font-size: 1.8rem; margin-bottom: 25px; border-bottom: 1px solid rgba(230, 140, 124, 0.2); padding-bottom: 10px; }
-        .info-group { margin-bottom: 20px; }
-        .info-group label { display: block; font-size: 0.8rem; text-transform: uppercase; color: #8FA3BF; margin-bottom: 8px; }
-        .placeholder-box { width: 100%; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px dashed rgba(230, 140, 124, 0.4); border-radius: 4px; display: flex; align-items: center; padding-left: 15px; box-sizing: border-box; }
-        .placeholder-box.tall { height: 80px; align-items: flex-start; padding-top: 10px; }
-        .loyalty-status { text-align: center; margin-bottom: 20px; }
-        .points-count { display: block; font-size: 3rem; font-family: var(--font-title); color: var(--gold-color); }
-        .progress-container { background: rgba(0, 0, 0, 0.3); height: 10px; border-radius: 10px; margin-bottom: 15px; overflow: hidden; }
-        .progress-bar { width: 15%; height: 100%; background: var(--gold-color); box-shadow: 0 0 10px var(--gold-color); }
-        .orders-table-container { overflow-x: auto; }
-        .orders-table { width: 100%; border-collapse: collapse; text-align: left; }
-        .orders-table th { padding: 15px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); font-weight: 500; color: var(--gold-color); }
-        .orders-table td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .status-pill { background: rgba(230, 140, 124, 0.2); color: var(--gold-color); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; }
-        .btn-action { background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color); padding: 10px 20px; font-family: var(--font-body); text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --muted-blue: #8FA3BF; }
+        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; }
+        header { padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); letter-spacing: 2px; }
+        .nav-link { color: var(--text-color); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; margin-left: 25px; }
+        .nav-link:hover { color: var(--gold-color); }
+        .compte-container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        h1 { font-family: var(--font-title); color: var(--gold-color); font-size: 3rem; margin-bottom: 10px; }
+        .subtitle { color: var(--muted-blue); margin-bottom: 40px; }
+        .section { background: rgba(19, 30, 58, 0.5); border: 1px solid rgba(230, 140, 124, 0.2); padding: 35px; border-radius: 6px; margin-bottom: 30px; backdrop-filter: blur(10px); }
+        .section h2 { font-family: var(--font-title); color: var(--gold-color); font-size: 1.7rem; margin: 0 0 25px; padding-bottom: 12px; border-bottom: 1px solid rgba(230, 140, 124, 0.2); }
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .info-block label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--muted-blue); letter-spacing: 1px; margin-bottom: 8px; }
+        .info-block .editable-field { font-size: 1.05rem; padding: 10px; background: rgba(255,255,255,0.03); border: 1px solid transparent; border-radius: 4px; min-height: 22px; }
+        .btn-action { background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color); padding: 11px 22px; font-family: inherit; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; }
         .btn-action:hover { background: var(--gold-color); color: var(--bg-color); }
-        .view-link { color: var(--gold-color); text-decoration: underline; font-size: 0.9rem; }
-        @media (max-width: 768px) { .profile-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; } }
+        .btn-action.saving { background: var(--gold-color); color: var(--bg-color); }
+        .fidelity-box { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(230, 140, 124, 0.1); border-left: 3px solid var(--gold-color); margin-top: 20px; }
+        .fidelity-points { font-family: var(--font-title); color: var(--gold-color); font-size: 2.5rem; }
+        .commande-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(230, 140, 124, 0.15); padding: 20px; border-radius: 4px; margin-bottom: 15px; display: grid; grid-template-columns: 1fr auto; gap: 15px; align-items: center; }
+        .commande-card .cmd-info h3 { margin: 0 0 8px; color: var(--gold-color); font-family: var(--font-title); }
+        .commande-card .cmd-info p { margin: 3px 0; color: var(--muted-blue); font-size: 0.85rem; }
+        .commande-actions { display: flex; flex-direction: column; gap: 8px; }
+        .statut-badge { display: inline-block; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        .statut-Payée { background: rgba(74, 144, 226, 0.3); color: #87B5E8; }
+        .statut-En.préparation { background: rgba(255, 165, 0, 0.3); color: #FFCC80; }
+        .statut-Prête { background: rgba(168, 119, 217, 0.3); color: #D5B8F0; }
+        .statut-En.livraison { background: rgba(76, 175, 80, 0.3); color: #A5D6A7; }
+        .statut-Livrée { background: rgba(107, 207, 127, 0.3); color: #A5E5B5; }
+        .statut-Abandonnée { background: rgba(244, 67, 54, 0.3); color: #EF9A9A; }
+        .btn-small { padding: 6px 14px; font-size: 0.75rem; text-decoration: none; display: inline-block; }
     </style>
+    <link rel="stylesheet" id="theme-css" href="css/theme-dark.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="logo">LES ARCADES</div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="restaurant.php">Accueil</a></li>
-                    <li><a href="menu.php">La Carte</a></li>
-                    <li><a href="notation.php">Notation</a></li>
-                </ul>
-            </nav>
-            <div class="auth-links">
-                <a href="logout.php">Déconnexion</a>
-            </div>
-        </div>
+        <div class="logo">LES ARCADES</div>
+        <nav>
+            <a href="restaurant.php" class="nav-link">Accueil</a>
+            <a href="menu.php" class="nav-link">La Carte</a>
+            <a href="moncompte.php" class="nav-link" style="color:var(--gold-color)">Mon Compte</a>
+            <a href="logout.php" class="nav-link">Déconnexion</a>
+        </nav>
     </header>
-    <main class="profile-container">
-        <h1 class="main-title">Mon Espace</h1>
 
-        <div class="profile-grid">
-            <section class="profile-card">
-                <h2>Mes Informations</h2>
-                <div class="info-group">
-                    <label>Nom Complet</label>
-                    <div class="placeholder-box"><?= htmlspecialchars($user['nom'] . " " . $user['prenom']) ?></div>
+    <main class="compte-container">
+        <h1>Mon Compte</h1>
+        <p class="subtitle">Bonjour <?= htmlspecialchars($user['prenom']) ?>, ravis de vous revoir.</p>
+
+        <!-- INFORMATIONS PERSONNELLES (Phase 3 : édition en AJAX) -->
+        <section class="section">
+            <h2>Mes informations</h2>
+            <div class="info-grid">
+                <div class="info-block">
+                    <label>Nom</label>
+                    <div class="editable-field" data-field="nom"><?= htmlspecialchars($user['nom']) ?></div>
                 </div>
-                <div class="info-group">
+                <div class="info-block">
+                    <label>Prénom</label>
+                    <div class="editable-field" data-field="prenom"><?= htmlspecialchars($user['prenom']) ?></div>
+                </div>
+                <div class="info-block">
                     <label>Email</label>
-                    <div class="placeholder-box"><?= htmlspecialchars($user['email']) ?></div>
+                    <div class="editable-field" data-field="email"><?= htmlspecialchars($user['email']) ?></div>
                 </div>
-                <div class="info-group">
+                <div class="info-block">
                     <label>Téléphone</label>
-                    <div class="placeholder-box"><?= htmlspecialchars($user['telephone'] ?? 'Non renseigné') ?></div>
+                    <div class="editable-field" data-field="telephone"><?= htmlspecialchars($user['telephone'] ?? 'Non renseigné') ?></div>
                 </div>
-                <div class="info-group">
-                    <label>Adresse de livraison</label>
-                    <div class="placeholder-box tall"><?= htmlspecialchars($user['adresse'] ?? 'Non renseignée') ?></div>
+                <div class="info-block" style="grid-column: 1 / -1;">
+                    <label>Adresse</label>
+                    <div class="editable-field" data-field="adresse"><?= htmlspecialchars($user['adresse'] ?? 'Non renseignée') ?></div>
                 </div>
-                <button class="btn-action">Modifier mon profil</button>
-            </section>
+            </div>
+            <div style="margin-top: 25px;">
+                <button id="btn-edit-profile" class="btn-action">Modifier mon profil</button>
+            </div>
 
-            <section class="profile-card loyalty-card">
-                <h2>Programme Fidélité</h2>
-                <div class="loyalty-status">
-                    <span class="points-count">15</span>
-                    <span class="points-label">Points cumulés</span>
+            <div class="fidelity-box">
+                <div>
+                    <strong>Programme fidélité</strong>
+                    <p style="margin: 5px 0 0; color: var(--muted-blue); font-size: 0.85rem;">Cumulez des points à chaque commande livrée</p>
                 </div>
-                <div class="progress-container">
-                    <div class="progress-bar"></div>
-                </div>
-                <p class="subtitle">Encore quelques points pour votre prochain thé offert !</p>
-            </section>
+                <div class="fidelity-points"><?= intval($user['points_fidelite'] ?? 0) ?> pts</div>
+            </div>
+        </section>
 
-            <section class="profile-card full-width">
-                <h2>Historique des Commandes</h2>
-                <div class="orders-table-container">
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>N° Commande</th>
-                                <th>Statut</th>
-                                <th>Total</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Aujourd'hui</td>
-                                <td>#000001</td>
-                                <td><span class="status-pill">En attente</span></td>
-                                <td>0.00 €</td>
-                                <td><a href="#" class="view-link">Détails</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- HISTORIQUE DES COMMANDES (réel depuis data.json) -->
+        <section class="section">
+            <h2>Mes commandes</h2>
+            <?php if (empty($mesCommandes)): ?>
+                <p style="color: var(--muted-blue);">Aucune commande pour le moment. <a href="menu.php" style="color: var(--gold-color);">Découvrez notre carte</a></p>
+            <?php else: ?>
+                <?php foreach ($mesCommandes as $cmd):
+                    $articles_str = [];
+                    foreach ($cmd['articles'] as $a) {
+                        $articles_str[] = $a['quantite'] . 'x ' . $a['nom'];
+                    }
+                ?>
+                <div class="commande-card">
+                    <div class="cmd-info">
+                        <h3>Commande #<?= $cmd['id'] ?> · <?= number_format($cmd['total'], 2) ?>€</h3>
+                        <p><?= htmlspecialchars(implode(', ', $articles_str)) ?></p>
+                        <p><?= htmlspecialchars($cmd['date']) ?> à <?= htmlspecialchars($cmd['heure']) ?> · <?= htmlspecialchars($cmd['type']) ?></p>
+                        <span class="statut-badge statut-<?= str_replace(' ', '.', $cmd['statut']) ?>"><?= $cmd['statut'] ?></span>
+                    </div>
+                    <div class="commande-actions">
+                        <?php if ($cmd['statut'] === 'Payée'): ?>
+                            <a href="modifier_commande.php?id=<?= $cmd['id'] ?>" class="btn-action btn-small">Modifier</a>
+                        <?php endif; ?>
+                        <?php if ($cmd['statut'] === 'Livrée' && empty($cmd['note']) && $cmd['type'] === 'livraison'): ?>
+                            <a href="notation.php?commande=<?= $cmd['id'] ?>" class="btn-action btn-small">Noter</a>
+                        <?php elseif (!empty($cmd['note'])): ?>
+                            <span style="color: var(--muted-blue); font-size: 0.75rem;">★ Notée</span>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </section>
-        </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </section>
     </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/profile-edit.js"></script>
 </body>
 </html>

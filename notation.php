@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Vérification de sécurité pour le rôle client [cite: 16, 105]
+// Vérification de sécurité pour le rôle client
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'client') {
     header("Location: connection.php");
     exit();
@@ -11,7 +11,7 @@ $message_remerciement = false;
 
 // Traitement du formulaire lors de l'envoi
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ici, on pourrait enregistrer les notes dans data.json [cite: 115]
+    // Ici, on pourrait enregistrer les notes dans data.json
     // Pour l'instant, on déclenche l'affichage du message de succès
     $message_remerciement = true;
 }
@@ -27,24 +27,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         /* --- BASE THÈME LES ARCADES --- */
         :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; }
         body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; line-height: 1.6; }
-        
+
         header { background-color: transparent; padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); }
         .top-bar { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); letter-spacing: 2px; }
-        
+
         .notation-container { padding: 60px 20px; display: flex; justify-content: center; align-items: center; min-height: 80vh; }
         .rating-card { background: rgba(19, 30, 58, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(230, 140, 124, 0.3); padding: 50px; border-radius: 8px; max-width: 600px; width: 100%; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
-        
+
         .main-title { font-family: var(--font-title); color: var(--gold-color); font-size: 2.5rem; margin-bottom: 10px; }
-        
+
         /* --- STYLE FORMULAIRE --- */
         .stars { display: flex; flex-direction: row-reverse; justify-content: center; gap: 10px; margin-bottom: 20px; }
         .stars input { display: none; }
         .stars label { font-size: 2.5rem; color: rgba(232, 241, 245, 0.2); cursor: pointer; transition: 0.3s; }
         .stars label:hover, .stars label:hover ~ label, .stars input:checked ~ label { color: var(--gold-color); text-shadow: 0 0 10px rgba(230, 140, 124, 0.5); }
-        
+
         textarea { width: 100%; height: 100px; background: rgba(6, 11, 25, 0.5); border: 1px solid rgba(230, 140, 124, 0.3); border-radius: 4px; color: var(--text-color); padding: 15px; font-family: var(--font-body); resize: none; margin-top: 10px; }
-        
+
         .submit-btn { background-color: var(--gold-color); color: #060B19; border: none; padding: 15px 40px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; margin-top: 20px; }
         .submit-btn:hover { background-color: #E8F1F5; transform: translateY(-2px); }
 
@@ -55,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
+    <link rel="stylesheet" id="theme-css" href="css/theme-dark.css">
 </head>
 <body>
     <header>
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main class="notation-container">
         <section class="rating-card">
-            
+
             <?php if ($message_remerciement): ?>
                 <div class="thank-you-msg">
                     <span class="check-icon">✨</span>
@@ -103,12 +104,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
 
                     <textarea name="comment" placeholder="Un petit mot sur votre expérience..."></textarea>
-                    
+
                     <button type="submit" class="submit-btn">Envoyer mon avis</button>
                 </form>
             <?php endif; ?>
 
         </section>
     </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/common.js"></script>
 </body>
 </html>

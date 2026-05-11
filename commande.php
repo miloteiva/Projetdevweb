@@ -1,111 +1,157 @@
 <?php
 session_start();
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'restaurateur') {
+if (!isset($_SESSION['user']) ||
+    !in_array($_SESSION['user']['role'], ['restaurateur', 'admin'])) {
     header("Location: connection.php");
     exit();
 }
+
+$data = json_decode(file_get_contents('data.json'), true);
+$commandes = $data['commandes'] ?? [];
+
+// Livreurs disponibles
+$livreurs = array_filter($data['users'], function($u) { return $u['role'] === 'livreur' && empty($u['bloque']); });
+
+// Grouper par statut
+function commandesParStatut($commandes, $statut) {
+    return array_filter($commandes, fn($c) => $c['statut'] === $statut);
+}
+$payees      = commandesParStatut($commandes, 'Payée');
+$preparation = commandesParStatut($commandes, 'En préparation');
+$pretes      = commandesParStatut($commandes, 'Prête');
+$enLivraison = commandesParStatut($commandes, 'En livraison');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gestion des Commandes - Les Arcades</title>
+    <title>Tableau de bord - Cuisine</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        /* --- BASE --- */
-        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; }
-        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; line-height: 1.6; }
-        header { background-color: transparent; padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); }
-        .navbar ul { display: flex; gap: 30px; list-style: none; padding: 0;}
-        .navbar a { text-decoration: none; font-size: 0.8rem; text-transform: uppercase; color: var(--text-color); }
-        .auth-links a { color: #8FA3BF; text-decoration: none;}
-
-        /* --- ADMIN + COMMANDE.CSS --- */
-        .admin-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .admin-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .main-title-profile { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold-color); }
-        .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .stat-card { background: rgba(19, 30, 58, 0.4); border: 1px solid rgba(230, 140, 124, 0.1); padding: 30px; text-align: center; border-radius: 4px; }
-        .stat-number { display: block; font-family: var(--font-title); font-size: 2.5rem; color: var(--gold-color); margin-bottom: 10px; }
-        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #8FA3BF; }
-        .admin-card { background-color: rgba(19, 30, 58, 0.6); border: 1px solid rgba(230, 140, 124, 0.2); padding: 30px; border-radius: 4px; }
-        .section-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
-        .status-indicator { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 10px rgba(230, 140, 124, 0.5); }
-        .waiting { background-color: #E68C7C; } 
-        .delivery { background-color: #8FA3BF; }
-        .admin-table { width: 100%; border-collapse: collapse; }
-        .admin-table th { text-align: left; padding: 15px; color: var(--gold-color); border-bottom: 1px solid rgba(230, 140, 124, 0.3); }
-        .admin-table td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .btn-action { padding: 6px 15px; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; border-radius: 4px; font-weight: 500; }
-        .btn-action.success { background: var(--gold-color); color: var(--bg-color); border: 1px solid var(--gold-color); }
-        .btn-action.outline { background: transparent; border: 1px solid #8FA3BF; color: #8FA3BF; }
-        .mt-40 { margin-top: 40px; }
+        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --muted-blue: #8FA3BF; }
+        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; }
+        header { padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); letter-spacing: 2px; }
+        .nav-link { color: var(--text-color); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; margin-left: 25px; }
+        .nav-link:hover { color: var(--gold-color); }
+        .dash-container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+        h1 { font-family: var(--font-title); color: var(--gold-color); font-size: 2.8rem; margin-bottom: 5px; }
+        .kanban { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .column { background: rgba(19, 30, 58, 0.4); border: 1px solid rgba(230, 140, 124, 0.2); border-radius: 6px; padding: 20px; }
+        .column h2 { font-family: var(--font-title); color: var(--gold-color); font-size: 1.3rem; margin: 0 0 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(230, 140, 124, 0.2); display: flex; justify-content: space-between; }
+        .column h2 .count { background: var(--gold-color); color: var(--bg-color); padding: 2px 10px; border-radius: 12px; font-size: 0.8rem; }
+        .cmd-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(230, 140, 124, 0.15); padding: 15px; border-radius: 4px; margin-bottom: 12px; }
+        .cmd-card h3 { margin: 0 0 8px; color: var(--gold-color); font-size: 1rem; }
+        .cmd-card p { margin: 4px 0; color: var(--muted-blue); font-size: 0.8rem; }
+        .cmd-card .articles { font-size: 0.8rem; color: var(--text-color); margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(230, 140, 124, 0.2); }
+        .btn-status-change, .btn-assign-livreur { background: var(--gold-color); color: var(--bg-color); border: none; padding: 8px 14px; font-family: inherit; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; margin-top: 10px; transition: 0.3s; width: 100%; }
+        .btn-status-change:hover, .btn-assign-livreur:hover { background: #f2a698; }
+        select { width: 100%; padding: 6px; margin-top: 8px; background: rgba(6, 11, 25, 0.5); border: 1px solid rgba(230, 140, 124, 0.3); color: var(--text-color); border-radius: 3px; font-family: inherit; font-size: 0.8rem; }
+        .empty-col { text-align: center; color: var(--muted-blue); font-size: 0.85rem; padding: 30px 0; }
     </style>
+    <link rel="stylesheet" id="theme-css" href="css/theme-dark.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="logo">LES ARCADES</div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="restaurant.php">Accueil</a></li>
-                    <li><a href="menu.php">La Carte</a></li>
-                </ul>
-            </nav>
-            <div class="auth-links">
-                <a href="logout.php">Déconnexion (Chef)</a>
-            </div>
-        </div>
+        <div class="logo">LES ARCADES</div>
+        <nav>
+            <a href="commande.php" class="nav-link" style="color:var(--gold-color)">Cuisine</a>
+            <a href="configurer_menu.php" class="nav-link">Menus</a>
+            <a href="logout.php" class="nav-link">Déconnexion</a>
+        </nav>
     </header>
 
-    <main class="admin-container">
-        <div class="admin-header-flex">
-            <h1 class="main-title-profile">Gestion des Commandes</h1>
+    <main class="dash-container">
+        <h1>Cuisine en direct</h1>
+        <p style="color: var(--muted-blue);">Gérez le cycle de vie de chaque commande - Phase 3 : changements de statut en AJAX</p>
+
+        <div class="kanban">
+            <!-- COLONNE 1 : Payées (à démarrer en préparation) -->
+            <div class="column">
+                <h2>À démarrer <span class="count"><?= count($payees) ?></span></h2>
+                <?php if (empty($payees)): ?>
+                    <p class="empty-col">Aucune nouvelle commande</p>
+                <?php else: foreach ($payees as $c): ?>
+                    <div class="cmd-card">
+                        <h3>#<?= $c['id'] ?> · <?= number_format($c['total'], 2) ?>€</h3>
+                        <p><?= htmlspecialchars($c['client']) ?> · <?= htmlspecialchars($c['type']) ?></p>
+                        <p><?= htmlspecialchars($c['date']) ?> à <?= htmlspecialchars($c['heure']) ?></p>
+                        <div class="articles">
+                            <?php foreach ($c['articles'] as $a): ?>• <?= $a['quantite'] ?>x <?= htmlspecialchars($a['nom']) ?><br><?php endforeach; ?>
+                        </div>
+                        <button class="btn-status-change" data-order-id="<?= $c['id'] ?>" data-status="En préparation">▶ Démarrer la préparation</button>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+
+            <!-- COLONNE 2 : En préparation -->
+            <div class="column">
+                <h2>En préparation <span class="count"><?= count($preparation) ?></span></h2>
+                <?php if (empty($preparation)): ?>
+                    <p class="empty-col">Aucune en cuisine</p>
+                <?php else: foreach ($preparation as $c): ?>
+                    <div class="cmd-card">
+                        <h3>#<?= $c['id'] ?> · <?= number_format($c['total'], 2) ?>€</h3>
+                        <p><?= htmlspecialchars($c['client']) ?> · <?= htmlspecialchars($c['type']) ?></p>
+                        <div class="articles">
+                            <?php foreach ($c['articles'] as $a): ?>• <?= $a['quantite'] ?>x <?= htmlspecialchars($a['nom']) ?><br><?php endforeach; ?>
+                        </div>
+                        <button class="btn-status-change" data-order-id="<?= $c['id'] ?>" data-status="Prête">✓ Marquer prête</button>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+
+            <!-- COLONNE 3 : Prêtes (assigner livreur) -->
+            <div class="column">
+                <h2>Prêtes <span class="count"><?= count($pretes) ?></span></h2>
+                <?php if (empty($pretes)): ?>
+                    <p class="empty-col">Aucune prête</p>
+                <?php else: foreach ($pretes as $c): ?>
+                    <div class="cmd-card">
+                        <h3>#<?= $c['id'] ?> · <?= number_format($c['total'], 2) ?>€</h3>
+                        <p><?= htmlspecialchars($c['client']) ?></p>
+                        <?php if ($c['type'] === 'livraison'): ?>
+                            <select data-order-id="<?= $c['id'] ?>">
+                                <option value="">Sélectionner un livreur</option>
+                                <?php foreach ($livreurs as $l): ?>
+                                    <option value="<?= $l['id'] ?>"><?= htmlspecialchars($l['prenom'] . ' ' . $l['nom']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <button class="btn-assign-livreur" data-order-id="<?= $c['id'] ?>">📦 Assigner & livrer</button>
+                        <?php else: ?>
+                            <p style="color: var(--gold-color); font-size: 0.85rem; margin-top: 10px;">À emporter / sur place</p>
+                            <button class="btn-status-change" data-order-id="<?= $c['id'] ?>" data-status="Livrée">✓ Marquer remise</button>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+
+            <!-- COLONNE 4 : En livraison -->
+            <div class="column">
+                <h2>En livraison <span class="count"><?= count($enLivraison) ?></span></h2>
+                <?php if (empty($enLivraison)): ?>
+                    <p class="empty-col">Aucune en route</p>
+                <?php else: foreach ($enLivraison as $c):
+                    $livreurNom = '?';
+                    foreach ($data['users'] as $u) {
+                        if (isset($c['id_livreur']) && $u['id'] === $c['id_livreur']) {
+                            $livreurNom = $u['prenom'] . ' ' . $u['nom']; break;
+                        }
+                    }
+                ?>
+                    <div class="cmd-card">
+                        <h3>#<?= $c['id'] ?> · <?= number_format($c['total'], 2) ?>€</h3>
+                        <p><?= htmlspecialchars($c['client']) ?></p>
+                        <p>🚴 Livreur : <?= htmlspecialchars($livreurNom) ?></p>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
         </div>
-
-        <div class="admin-stats">
-            <div class="stat-card">
-                <span class="stat-number">1</span>
-                <span class="stat-label">À Préparer</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">0</span>
-                <span class="stat-label">En Livraison</span>
-            </div>
-        </div>
-
-        <section class="admin-card order-section">
-            <div class="section-header">
-                <div class="status-indicator waiting"></div>
-                <h2 style="color:var(--gold-color); font-family:var(--font-title);">Commandes à Préparer</h2>
-            </div>
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead><tr><th>N°</th><th>Client</th><th>Détails</th><th>Heure</th><th>Action</th></tr></thead>
-                    <tbody>
-                        <tr><td>#0001</td><td><strong>Jean Dupont</strong></td><td>1x Couscous Royal</td><td>19:30</td><td><button class="btn-action success">Prête</button></td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="admin-card order-section mt-40">
-            <div class="section-header">
-                <div class="status-indicator delivery"></div>
-                <h2 style="color:var(--gold-color); font-family:var(--font-title);">En cours de Livraison</h2>
-            </div>
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead><tr><th>N°</th><th>Client / Adresse</th><th>Livreur</th><th>Départ</th><th>Action</th></tr></thead>
-                    <tbody>
-                        <tr><td colspan="5" style="text-align:center;">Aucune livraison en cours</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
     </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/order-actions.js"></script>
 </body>
 </html>

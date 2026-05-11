@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Vérification stricte du rôle
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: connection.php");
     exit();
@@ -8,7 +7,24 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 
 $data = json_decode(file_get_contents('data.json'), true);
 $users = $data['users'];
-$nbUsers = count($users);
+$commandes = $data['commandes'] ?? [];
+
+// Statistiques
+$nbClients = 0; $nbBloques = 0;
+foreach ($users as $u) {
+    if ($u['role'] === 'client') $nbClients++;
+    if (!empty($u['bloque'])) $nbBloques++;
+}
+
+// CA du jour
+$caJour = 0;
+$today = date('d/m/Y');
+foreach ($commandes as $cmd) {
+    if (in_array($cmd['statut'], ['Payée', 'En préparation', 'Prête', 'En livraison', 'Livrée'])
+        && $cmd['date'] === $today) {
+        $caJour += $cmd['total'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,98 +34,106 @@ $nbUsers = count($users);
     <title>Administration - Les Arcades</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        /* --- BASE --- */
-        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; }
-        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; line-height: 1.6; }
-        header { background-color: transparent; padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); }
-        .navbar ul { display: flex; gap: 30px; }
-        .navbar a { font-size: 0.8rem; text-transform: uppercase; color: var(--text-color); }
-        .navbar a:hover { color: var(--gold-color); }
-        .auth-links { font-size: 0.75rem; color: #8FA3BF; }
-
-        /* --- ADMIN.CSS --- */
-        .admin-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .main-title-profile { font-family: var(--font-title); font-size: 3.5rem; color: var(--gold-color); margin-bottom: 40px; }
-        .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .stat-card { background: rgba(19, 30, 58, 0.4); border: 1px solid rgba(230, 140, 124, 0.1); padding: 30px; text-align: center; border-radius: 4px; backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; }
-        .stat-number { display: block; font-family: var(--font-title); font-size: 2.5rem; color: var(--gold-color); margin-bottom: 10px; }
-        .stat-label { font-size: 0.75rem; text-transform: uppercase; color: #8FA3BF; letter-spacing: 1px; }
-        .admin-card { background-color: rgba(19, 30, 58, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(230, 140, 124, 0.2); padding: 30px; border-radius: 4px; }
-        .admin-header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid rgba(230, 140, 124, 0.2); padding-bottom: 20px; flex-wrap: wrap; gap: 20px; }
-        .admin-card h2 { font-family: var(--font-title); color: var(--gold-color); margin: 0; }
-        .admin-nav-group { display: flex; align-items: center; gap: 20px; }
-        .table-container { overflow-x: auto; }
-        .admin-table { width: 100%; border-collapse: collapse; }
-        .admin-table th { text-align: left; padding: 15px; color: var(--gold-color); border-bottom: 1px solid rgba(230, 140, 124, 0.3); font-size: 0.85rem; text-transform: uppercase; }
-        .admin-table td { padding: 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: #BDC6D3; }
-        .action-link { background: transparent; border: none; cursor: pointer; font-size: 0.8rem; text-decoration: underline; color: var(--gold-color); transition: 0.3s; }
-        .action-link:hover { opacity: 0.7; }
+        :root { --bg-color: #060B19; --text-color: #E8F1F5; --gold-color: #E68C7C; --font-title: 'Playfair Display', serif; --font-body: 'Montserrat', sans-serif; --muted-blue: #8FA3BF; }
+        body { background: linear-gradient(180deg, #02050E 0%, #1B335F 100%) fixed; color: var(--text-color); font-family: var(--font-body); margin: 0; padding: 0; }
+        header { padding: 20px 40px; border-bottom: 1px solid rgba(230, 140, 124, 0.3); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold-color); letter-spacing: 2px; }
+        .nav-link { color: var(--text-color); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; margin-left: 25px; }
+        .nav-link:hover { color: var(--gold-color); }
+        .admin-container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        h1 { font-family: var(--font-title); color: var(--gold-color); font-size: 3rem; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-box { background: rgba(19, 30, 58, 0.5); border: 1px solid rgba(230, 140, 124, 0.2); padding: 25px; border-radius: 6px; text-align: center; }
+        .stat-box .value { font-family: var(--font-title); color: var(--gold-color); font-size: 2.5rem; }
+        .stat-box .label { color: var(--muted-blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+        table { width: 100%; border-collapse: collapse; background: rgba(19, 30, 58, 0.5); }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid rgba(230, 140, 124, 0.1); }
+        th { background: rgba(230, 140, 124, 0.1); color: var(--gold-color); font-family: var(--font-title); font-weight: normal; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        .role-badge { padding: 3px 8px; border-radius: 10px; font-size: 0.7rem; }
+        .role-admin { background: rgba(230, 140, 124, 0.3); color: var(--gold-color); }
+        .role-client { background: rgba(143, 163, 191, 0.2); color: var(--muted-blue); }
+        .role-restaurateur { background: rgba(168, 119, 217, 0.3); color: #D5B8F0; }
+        .role-livreur { background: rgba(76, 175, 80, 0.3); color: #A5D6A7; }
+        .btn-block-user { background: transparent; border: 1px solid var(--gold-color); color: var(--gold-color); padding: 6px 14px; font-size: 0.75rem; cursor: pointer; transition: 0.3s; font-family: inherit; }
+        .btn-block-user:hover { background: var(--gold-color); color: var(--bg-color); }
+        .btn-block-user.blocked-state { background: #ff6b6b; color: #fff; border-color: #ff6b6b; }
+        h2 { font-family: var(--font-title); color: var(--gold-color); margin-top: 50px; }
     </style>
+    <link rel="stylesheet" id="theme-css" href="css/theme-dark.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="logo">LES ARCADES</div>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="restaurant.php">Accueil</a></li>
-                    <li><a href="menu.php">La Carte</a></li>
-                </ul>
-            </nav>
-            <div class="auth-links">
-                <a href="logout.php">Déconnexion (Admin)</a>
-            </div>
-        </div>
+        <div class="logo">LES ARCADES</div>
+        <nav>
+            <a href="restaurant.php" class="nav-link">Accueil</a>
+            <a href="admin.php" class="nav-link" style="color:var(--gold-color)">Admin</a>
+            <a href="logout.php" class="nav-link">Déconnexion</a>
+        </nav>
     </header>
 
     <main class="admin-container">
-        <h1 class="main-title-profile">Page Administrateur</h1>
+        <h1>Administration</h1>
+        <p style="color: var(--muted-blue);">Tableau de bord - Bienvenue <?= htmlspecialchars($_SESSION['user']['prenom']) ?></p>
 
-        <div class="admin-stats">
-            <div class="stat-card">
-                <span class="stat-number"><?= $nbUsers ?></span>
-                <span class="stat-label">Utilisateurs inscrits</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">0€</span>
-                <span class="stat-label">CA du jour</span>
-            </div>
-        </div>
-
-        <section class="admin-card full-width">
-            <div class="admin-header-actions">
-                <h2>Liste des Utilisateurs</h2>
-            </div>
-
-            <div class="table-container">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Nom & Prénom</th>
-                            <th>Email</th>
-                            <th>Rôle</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach($users as $u): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($u['nom'] . " " . $u['prenom']) ?></td>
-                            <td><?= htmlspecialchars($u['email']) ?></td>
-                            <td><?= htmlspecialchars($u['role']) ?></td>
-                            <td>
-                                <button class="action-link edit">Détails</button>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
+        <section class="stats">
+            <div class="stat-box"><div class="value"><?= count($users) ?></div><div class="label">Utilisateurs</div></div>
+            <div class="stat-box"><div class="value"><?= $nbClients ?></div><div class="label">Clients</div></div>
+            <div class="stat-box"><div class="value"><?= $nbBloques ?></div><div class="label">Comptes bloqués</div></div>
+            <div class="stat-box"><div class="value"><?= number_format($caJour, 0) ?>€</div><div class="label">CA du jour</div></div>
         </section>
+
+        <h2>Gestion des utilisateurs</h2>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Nom complet</th><th>Email</th><th>Rôle</th><th>Statut</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+                <?php foreach ($users as $u): ?>
+                <tr style="<?= !empty($u['bloque']) ? 'opacity:0.5;' : '' ?>">
+                    <td>#<?= $u['id'] ?></td>
+                    <td><?= htmlspecialchars($u['prenom'] . ' ' . $u['nom']) ?></td>
+                    <td><?= htmlspecialchars($u['email']) ?></td>
+                    <td><span class="role-badge role-<?= $u['role'] ?>"><?= ucfirst($u['role']) ?></span></td>
+                    <td class="user-status"><?= !empty($u['bloque']) ? '🚫 Bloqué' : '✓ Actif' ?></td>
+                    <td>
+                        <?php if ($u['id'] !== $_SESSION['user']['id']): ?>
+                            <button class="btn-block-user <?= !empty($u['bloque']) ? 'blocked-state' : '' ?>"
+                                    data-user-id="<?= $u['id'] ?>"
+                                    data-blocked="<?= !empty($u['bloque']) ? '1' : '0' ?>">
+                                <?= !empty($u['bloque']) ? 'Débloquer' : 'Bloquer' ?>
+                            </button>
+                        <?php else: ?>
+                            <em style="color: var(--muted-blue); font-size: 0.75rem;">(vous)</em>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <h2>Dernières commandes</h2>
+        <table>
+            <thead>
+                <tr><th>ID</th><th>Client</th><th>Total</th><th>Statut</th><th>Date</th></tr>
+            </thead>
+            <tbody>
+                <?php foreach (array_reverse($commandes) as $cmd): ?>
+                <tr>
+                    <td>#<?= $cmd['id'] ?></td>
+                    <td><?= htmlspecialchars($cmd['client']) ?></td>
+                    <td><?= number_format($cmd['total'], 2) ?>€</td>
+                    <td><?= htmlspecialchars($cmd['statut']) ?></td>
+                    <td><?= htmlspecialchars($cmd['date']) ?> <?= htmlspecialchars($cmd['heure']) ?></td>
+                </tr>
+                <?php endforeach; ?>
+                <?php if (empty($commandes)): ?><tr><td colspan="5" style="text-align:center; color:var(--muted-blue);">Aucune commande</td></tr><?php endif; ?>
+            </tbody>
+        </table>
     </main>
+
+    <script src="js/theme.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/admin-actions.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
             "nom": "Admin",
             "prenom": "Principal",
             "email": "admin1@arcades.fr",
-            "password": "123",
+            "password": "1234",
             "role": "admin",
             "bloque": false,
             "points_fidelite": 0
@@ -15,7 +15,7 @@
             "nom": "Admin",
             "prenom": "Secondaire",
             "email": "admin2@arcades.fr",
-            "password": "123",
+            "password": "1234",
             "role": "admin",
             "bloque": false,
             "points_fidelite": 0
@@ -25,7 +25,7 @@
             "nom": "Chef",
             "prenom": "Resto",
             "email": "resto@arcades.fr",
-            "password": "123",
+            "password": "1234",
             "role": "restaurateur",
             "bloque": false,
             "points_fidelite": 0
@@ -35,7 +35,7 @@
             "nom": "Livreur",
             "prenom": "Express",
             "email": "livreur@arcades.fr",
-            "password": "123",
+            "password": "1234",
             "role": "livreur",
             "bloque": false,
             "points_fidelite": 0
@@ -59,7 +59,7 @@
             "adresse": "5 rue des Lilas, Paris",
             "telephone": "0623456789",
             "email": "client2@test.com",
-            "password": "123",
+            "password": "1234",
             "role": "client",
             "bloque": false,
             "points_fidelite": 8
@@ -71,10 +71,10 @@
             "adresse": "22 av Victor Hugo, Versailles",
             "telephone": "0634567890",
             "email": "client3@test.com",
-            "password": "123",
+            "password": "1234",
             "role": "client",
             "bloque": false,
-            "points_fidelite": 3
+            "points_fidelite": 8
         },
         {
             "id": 8,
@@ -83,7 +83,7 @@
             "adresse": "8 place de la Mairie, Saint-Germain",
             "telephone": "0645678901",
             "email": "client4@test.com",
-            "password": "123",
+            "password": "1234",
             "role": "client",
             "bloque": false,
             "points_fidelite": 22
@@ -95,7 +95,7 @@
             "adresse": "1 rue de la Paix, Le Vesinet",
             "telephone": "0656789012",
             "email": "client5@test.com",
-            "password": "123",
+            "password": "1234",
             "role": "client",
             "bloque": false,
             "points_fidelite": 0
@@ -309,20 +309,26 @@
         {
             "id": 1,
             "nom": "Sahara",
-            "desc": "Entrée + Plat + Dessert au choix à la carte",
-            "prix": 45
+            "desc": "Le voyage essentiel : entrée, plat et dessert au choix dans la carte. Une découverte authentique de nos saveurs.",
+            "prix": 45,
+            "nb_services": 3,
+            "structure": "Entrée + Plat + Dessert"
         },
         {
             "id": 2,
             "nom": "Quintessence",
-            "desc": "Menu dégustation en 5 temps selon l'inspiration du Chef",
-            "prix": 75
+            "desc": "Menu dégustation en 5 temps : amuse-bouche du Chef, entrée raffinée, plat signature, trou normand, dessert d'inspiration.",
+            "prix": 75,
+            "nb_services": 5,
+            "structure": "Amuse-bouche + Entrée + Plat + Trou normand + Dessert"
         },
         {
             "id": 3,
             "nom": "L'Éclipse",
-            "desc": "Menu Prestige en 7 services avec accord mets & vins",
-            "prix": 110
+            "desc": "Menu Prestige en 7 services avec accord mets & vins : mise en bouche, entrée froide, entrée chaude, sorbet, plat principal, plateau de douceurs, mignardises & thé.",
+            "prix": 110,
+            "nb_services": 7,
+            "structure": "Mise en bouche + Entrée froide + Entrée chaude + Sorbet + Plat + Douceurs + Mignardises"
         }
     ],
     "commandes": [
@@ -339,6 +345,7 @@
                 }
             ],
             "total": 29,
+            "montant_paye": 29,
             "statut": "Livrée",
             "type": "livraison",
             "id_livreur": 4,
@@ -359,13 +366,14 @@
                     "type": "plat"
                 },
                 {
-                    "nom": "Thé Gourmand",
+                    "nom": "Le Thé Gourmand",
                     "prix": 15,
                     "quantite": 1,
                     "type": "plat"
                 }
             ],
             "total": 43,
+            "montant_paye": 43,
             "statut": "Payée",
             "type": "livraison",
             "id_livreur": null,
@@ -376,8 +384,8 @@
         },
         {
             "id": 3,
-            "id_client": 5,
-            "client": "Jean Dupont",
+            "id_client": 7,
+            "client": "Luc Bernard",
             "articles": [
                 {
                     "nom": "Le Couscous Signature",
@@ -392,22 +400,44 @@
                     "type": "plat"
                 },
                 {
-                    "nom": "Gambas au Ras el-Hanout",
-                    "prix": 19,
-                    "quantite": 1,
+                    "nom": "Perle de Gazelle",
+                    "prix": 13,
+                    "quantite": 2,
                     "type": "plat"
                 }
             ],
-            "total": 65,
-            "montant_paye": 79,
-            "statut": "Payée",
+            "total": 72,
+            "montant_paye": 72,
+            "statut": "Livrée",
             "type": "livraison",
-            "id_livreur": null,
-            "date": "11\/05\/2026",
-            "heure": "12:39",
+            "id_livreur": 4,
+            "heure": "12:30",
+            "date": "12\/05\/2026",
             "note": false,
             "notes": null,
-            "modifiee": true
+            "heure_livraison": "10:56"
+        },
+        {
+            "id": 4,
+            "id_client": 8,
+            "client": "Emma Petit",
+            "articles": [
+                {
+                    "nom": "Couscous Royal",
+                    "prix": 29,
+                    "quantite": 2,
+                    "type": "plat"
+                }
+            ],
+            "total": 58,
+            "montant_paye": 58,
+            "statut": "Prête",
+            "type": "livraison",
+            "id_livreur": null,
+            "heure": "13:00",
+            "date": "12\/05\/2026",
+            "note": false,
+            "notes": null
         }
     ],
     "tickets": [

@@ -40,7 +40,7 @@ site/
 1. Démarrer un serveur PHP : `php -S localhost:8000` dans le dossier `site/`
 2. Ouvrir `http://localhost:8000/restaurant.php`
 
-### Comptes pré-configurés (mot de passe : `123` pour tous)
+### Comptes pré-configurés (mot de passe : `1234` pour tous)
 
 | Rôle | Email | Test |
 |------|-------|------|

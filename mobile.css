@@ -1,0 +1,299 @@
+/* ===========================================================
+   mobile.css - Responsive design complet Les Arcades
+   Breakpoints : 768px (tablette), 480px (mobile)
+   S'applique à toutes les pages en complément des thèmes
+   =========================================================== */
+
+/* ─── RESET GLOBAL MOBILE ─── */
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
+table { width: 100%; }
+
+/* ─── HEADER & NAVIGATION ─── */
+header {
+    padding: 15px 20px !important;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6, 11, 25, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+.top-bar { position: relative; }
+
+/* Bouton hamburger (caché sur desktop) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    z-index: 200;
+}
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold-color, #E68C7C);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu nav desktop → mobile */
+.navbar ul, nav ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ─── TABLETTE (≤ 900px) ─── */
+@media (max-width: 900px) {
+    /* Grid 2 colonnes → 1 colonne */
+    .grid-layout {
+        grid-template-columns: 1fr !important;
+    }
+    .grid-item.photo-container {
+        height: 300px !important;
+    }
+    .text-content {
+        padding: 40px 25px !important;
+    }
+    .stats-container {
+        gap: 30px !important;
+        flex-direction: column !important;
+        align-items: center;
+    }
+    .kanban {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .info-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .dish-gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    .experience-grid {
+        gap: 20px !important;
+    }
+    .exp-card {
+        width: 100% !important;
+        max-width: 350px;
+    }
+    .filters-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+/* ─── MOBILE (≤ 768px) ─── */
+@media (max-width: 768px) {
+
+    /* Navigation hamburger */
+    .hamburger { display: flex !important; }
+
+    .navbar, nav.navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 280px;
+        height: 100vh;
+        background: rgba(6, 11, 25, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(230, 140, 124, 0.3);
+        transition: right 0.3s ease;
+        z-index: 150;
+        padding: 80px 30px 30px;
+        overflow-y: auto;
+    }
+    .navbar.open, nav.navbar.open { right: 0; }
+
+    .navbar ul, nav ul {
+        flex-direction: column !important;
+        gap: 0 !important;
+        align-items: flex-start;
+    }
+    .navbar a, nav a, .nav-link {
+        display: block;
+        padding: 14px 0 !important;
+        font-size: 1rem !important;
+        border-bottom: 1px solid rgba(230, 140, 124, 0.1);
+        width: 100%;
+    }
+
+    /* Overlay menu */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+    }
+    .nav-overlay.open { display: block; }
+
+    /* Titres */
+    .main-title, h1.main-title { font-size: 2.2rem !important; }
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.6rem !important; }
+    .gold-title { font-size: 2rem !important; }
+
+    /* Intro section */
+    .intro-section { padding: 50px 15px !important; }
+    .intro-text { font-size: 1rem !important; }
+
+    /* Grilles */
+    .grid-layout { grid-template-columns: 1fr !important; }
+    .grid-item.photo-container { height: 220px !important; }
+    .text-content { padding: 30px 20px !important; }
+    .text-content h2 { font-size: 1.6rem !important; }
+    .text-content p { font-size: 0.95rem !important; }
+
+    /* Stats */
+    .stats-container {
+        flex-direction: column !important;
+        gap: 25px !important;
+        align-items: center;
+        margin-top: 40px !important;
+    }
+    .number { font-size: 3rem !important; }
+
+    /* Menu spécialités */
+    .menu-section { padding: 60px 15px !important; }
+    .menu-title { font-size: 1.8rem !important; letter-spacing: 2px !important; }
+    .menu-item { font-size: 1rem !important; }
+
+    /* Plats populaires */
+    .featured-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    /* Recherche */
+    .search-wrapper { padding: 0 10px; }
+
+    /* Galerie */
+    .dish-gallery-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin: 30px 15px !important;
+    }
+    .gallery-block { height: 150px !important; }
+
+    /* Expériences (menus) */
+    .experience-grid {
+        flex-direction: column !important;
+        align-items: center;
+        padding: 0 15px;
+    }
+    .exp-card { width: 100% !important; }
+
+    /* Filtres */
+    .filters-bar { padding: 15px !important; margin: 20px 10px !important; }
+    .filters-grid { grid-template-columns: 1fr !important; gap: 15px !important; }
+
+    /* Grille plats */
+    #plats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        padding: 0 10px;
+    }
+
+    /* Compte client */
+    .compte-container { padding: 0 15px !important; margin: 30px auto !important; }
+    .section { padding: 20px 15px !important; }
+    .commande-card {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .commande-actions { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+    .fidelity-box {
+        flex-direction: column !important;
+        gap: 10px;
+        text-align: center;
+    }
+    .fidelity-points { font-size: 2rem !important; }
+
+    /* Panier */
+    .panier-container { margin: 20px 10px !important; padding: 20px 15px !important; }
+    .item-row { flex-wrap: wrap; gap: 8px; }
+    .item-price { min-width: auto !important; }
+
+    /* Paiement */
+    .pay-container { margin: 20px 10px !important; padding: 25px 15px !important; }
+    .row { grid-template-columns: 1fr !important; }
+
+    /* Connexion / Inscription */
+    .login-page { padding: 20px 10px !important; min-height: auto !important; }
+    .login-container { padding: 25px 20px !important; }
+    .main-title-profile { font-size: 2rem !important; margin-bottom: 20px !important; }
+
+    /* Notation */
+    .notation-container { padding: 30px 10px !important; }
+    .rating-card { padding: 25px 15px !important; }
+    .stars label { font-size: 2rem !important; }
+    .main-title { font-size: 1.8rem !important; }
+
+    /* Admin */
+    .admin-container { padding: 0 10px !important; margin: 20px auto !important; }
+    .stats { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .stat-box .value { font-size: 1.8rem !important; }
+
+    /* Table admin */
+    table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    .crud-table { display: block; overflow-x: auto; }
+
+    /* Kanban restaurateur */
+    .kanban { grid-template-columns: 1fr !important; gap: 15px !important; }
+    .dash-container { padding: 0 10px !important; margin: 20px auto !important; }
+
+    /* Livraison */
+    .liv-container { padding: 0 10px !important; margin: 20px auto !important; }
+    .delivery-card { padding: 18px 15px !important; }
+
+    /* Modifier commande */
+    .container { margin: 20px 10px !important; padding: 20px 15px !important; }
+    .modif-line { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+
+    /* Configurer menu */
+    .config-container { margin: 20px 10px !important; padding: 20px 15px !important; }
+    .step { padding: 15px !important; }
+
+    /* Allergènes */
+    .container { max-width: 100% !important; margin: 20px 10px !important; padding: 20px 15px !important; }
+    .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .item { padding: 10px !important; }
+
+    /* Footer */
+    footer { padding: 40px 20px !important; }
+
+    /* Theme switcher */
+    .theme-switcher {
+        bottom: 10px !important;
+        left: 10px !important;
+    }
+
+    /* Boutons livreur (déjà grands, garder) */
+    .btn-deliver, .btn-abandon, .btn-map { min-height: 52px !important; font-size: 1rem !important; }
+
+    /* Modal CRUD */
+    .modal-box {
+        width: 95% !important;
+        padding: 20px 15px !important;
+        max-height: 85vh !important;
+    }
+}
+
+/* ─── TRÈS PETIT MOBILE (≤ 380px) ─── */
+@media (max-width: 380px) {
+    .main-title, h1 { font-size: 1.7rem !important; }
+    .stats { grid-template-columns: 1fr !important; }
+    .commande-actions { flex-direction: column !important; }
+    .dish-gallery-grid { grid-template-columns: 1fr !important; }
+    .grid { grid-template-columns: 1fr !important; }
+}

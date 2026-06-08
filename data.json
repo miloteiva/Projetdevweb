@@ -1,0 +1,810 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "nom": "Admin",
+            "prenom": "Principal",
+            "email": "admin1@arcades.fr",
+            "password": "1234",
+            "role": "admin",
+            "bloque": false,
+            "points_fidelite": 0,
+            "date_inscription": "01\/01\/2025"
+        },
+        {
+            "id": 2,
+            "nom": "Admin",
+            "prenom": "Secondaire",
+            "email": "admin2@arcades.fr",
+            "password": "1234",
+            "role": "admin",
+            "bloque": false,
+            "points_fidelite": 0,
+            "date_inscription": "01\/01\/2025"
+        },
+        {
+            "id": 3,
+            "nom": "Chef",
+            "prenom": "Resto",
+            "email": "resto@arcades.fr",
+            "password": "1234",
+            "role": "restaurateur",
+            "bloque": false,
+            "points_fidelite": 0,
+            "date_inscription": "01\/01\/2025"
+        },
+        {
+            "id": 4,
+            "nom": "Livreur",
+            "prenom": "Express",
+            "email": "livreur@arcades.fr",
+            "password": "1234",
+            "role": "livreur",
+            "bloque": false,
+            "points_fidelite": 0,
+            "date_inscription": "01\/01\/2025"
+        },
+        {
+            "id": 5,
+            "nom": "Dupont",
+            "prenom": "Jean",
+            "adresse": "12 Bd de la République, Chatou",
+            "telephone": "0612345678",
+            "email": "client1@test.com",
+            "password": "1234",
+            "role": "client",
+            "bloque": false,
+            "points_fidelite": 15,
+            "date_inscription": "10\/02\/2025"
+        },
+        {
+            "id": 6,
+            "nom": "Martin",
+            "prenom": "Sophie",
+            "adresse": "5 rue des Lilas, Paris",
+            "telephone": "0623456789",
+            "email": "client2@test.com",
+            "password": "1234",
+            "role": "client",
+            "bloque": false,
+            "points_fidelite": 8,
+            "date_inscription": "15\/02\/2025"
+        },
+        {
+            "id": 7,
+            "nom": "Bernard",
+            "prenom": "Luc",
+            "adresse": "22 av Victor Hugo, Versailles",
+            "telephone": "0634567890",
+            "email": "client3@test.com",
+            "password": "1234",
+            "role": "client",
+            "bloque": false,
+            "points_fidelite": 8,
+            "date_inscription": "20\/02\/2025"
+        },
+        {
+            "id": 8,
+            "nom": "Petit",
+            "prenom": "Emma",
+            "adresse": "8 place de la Mairie, Saint-Germain",
+            "telephone": "0645678901",
+            "email": "client4@test.com",
+            "password": "1234",
+            "role": "client",
+            "bloque": false,
+            "points_fidelite": 22,
+            "date_inscription": "01\/03\/2025"
+        },
+        {
+            "id": 9,
+            "nom": "Robert",
+            "prenom": "Paul",
+            "adresse": "1 rue de la Paix, Le Vesinet",
+            "telephone": "0656789012",
+            "email": "client5@test.com",
+            "password": "1234",
+            "role": "client",
+            "bloque": false,
+            "points_fidelite": 5,
+            "date_inscription": "05\/03\/2025"
+        }
+    ],
+    "plats": [
+        {
+            "id": 1,
+            "categorie": "Préludes",
+            "nom": "La Pastilla de l'Atlas",
+            "allergenes": "1,3,8",
+            "desc": "Feuilleté craquant au pigeon, amandes torréfiées et cannelle fine.",
+            "ingredients": "Feuilles de brick, pigeon, amandes, cannelle, sucre glace, œufs",
+            "prix": 16,
+            "tags": [
+                "halal"
+            ],
+            "nb_commandes": 12,
+            "actif": true
+        },
+        {
+            "id": 2,
+            "categorie": "Préludes",
+            "nom": "Méchouia Fumée",
+            "allergenes": "",
+            "desc": "Poivrons de saison grillés au feu de bois, ail confit et huile d'olive.",
+            "ingredients": "Poivrons rouges, tomates, ail, huile d'olive, cumin, paprika",
+            "prix": 14,
+            "tags": [
+                "vegetarien",
+                "vegan",
+                "halal",
+                "sans-gluten",
+                "epice"
+            ],
+            "nb_commandes": 24,
+            "actif": true
+        },
+        {
+            "id": 3,
+            "categorie": "Préludes",
+            "nom": "Gambas au Ras el-Hanout",
+            "allergenes": "2,7",
+            "desc": "Saisies à la plancha, émulsion de coriandre fraîche et citron vert.",
+            "ingredients": "Gambas, ras el-hanout, coriandre, citron vert, beurre, ail",
+            "prix": 19,
+            "tags": [
+                "halal",
+                "epice"
+            ],
+            "nb_commandes": 8,
+            "actif": true
+        },
+        {
+            "id": 4,
+            "categorie": "Préludes",
+            "nom": "Briouates au Fromage",
+            "allergenes": "1,7",
+            "desc": "Croustillants farcis au fromage frais et menthe.",
+            "ingredients": "Feuilles de brick, fromage frais, menthe, œuf, persil",
+            "prix": 12,
+            "tags": [
+                "vegetarien",
+                "halal"
+            ],
+            "nb_commandes": 18,
+            "actif": true
+        },
+        {
+            "id": 5,
+            "categorie": "Préludes",
+            "nom": "Zaalouk d'Aubergines",
+            "allergenes": "",
+            "desc": "Caviar d'aubergines aux épices douces.",
+            "ingredients": "Aubergines, tomates, ail, cumin, paprika, huile d'olive, coriandre",
+            "prix": 11,
+            "tags": [
+                "vegetarien",
+                "vegan",
+                "halal",
+                "sans-gluten"
+            ],
+            "nb_commandes": 30,
+            "actif": true
+        },
+        {
+            "id": 6,
+            "categorie": "Cœurs de Fête",
+            "nom": "Le Couscous Signature",
+            "allergenes": "1",
+            "desc": "Semoule travaillée à la main, agneau de sept heures et légumes oubliés.",
+            "ingredients": "Semoule, agneau, courgettes, carottes, navets, pois chiches, ras el-hanout, safran",
+            "prix": 32,
+            "tags": [
+                "halal"
+            ],
+            "nb_commandes": 45,
+            "actif": true
+        },
+        {
+            "id": 7,
+            "categorie": "Cœurs de Fête",
+            "nom": "Tajine d'Or de Casablanca",
+            "allergenes": "12",
+            "desc": "Poulet fermier, citrons confits, olives violettes et safran pur.",
+            "ingredients": "Poulet, citrons confits, olives violettes, safran, oignons, gingembre",
+            "prix": 28,
+            "tags": [
+                "halal"
+            ],
+            "nb_commandes": 38,
+            "actif": true
+        },
+        {
+            "id": 8,
+            "categorie": "Cœurs de Fête",
+            "nom": "Noix de Saint-Jacques d'Orient",
+            "allergenes": "14",
+            "desc": "Sur un lit de purée de pois chiches au cumin et jus de rôti corsé.",
+            "ingredients": "Saint-Jacques, pois chiches, cumin, jus de viande, beurre, fleur de sel",
+            "prix": 34,
+            "tags": [],
+            "nb_commandes": 10,
+            "actif": true
+        },
+        {
+            "id": 9,
+            "categorie": "Cœurs de Fête",
+            "nom": "Couscous Royal",
+            "allergenes": "1",
+            "desc": "Merguez, poulet, agneau, légumes confits.",
+            "ingredients": "Semoule, merguez, poulet, agneau, courgettes, carottes, navets, pois chiches",
+            "prix": 29,
+            "tags": [
+                "halal",
+                "epice"
+            ],
+            "nb_commandes": 52,
+            "actif": true
+        },
+        {
+            "id": 10,
+            "categorie": "Cœurs de Fête",
+            "nom": "Tajine Kefta aux Œufs",
+            "allergenes": "3",
+            "desc": "Boulettes de bœuf épicées, sauce tomate.",
+            "ingredients": "Bœuf haché, œufs, tomates, oignons, cumin, paprika, persil, coriandre",
+            "prix": 24,
+            "tags": [
+                "halal",
+                "epice"
+            ],
+            "nb_commandes": 28,
+            "actif": true
+        },
+        {
+            "id": 11,
+            "categorie": "Douceurs",
+            "nom": "L'Orange de Marrakech",
+            "allergenes": "8",
+            "desc": "Fines lamelles à la fleur d'oranger, sorbet menthe et éclats de pistache.",
+            "ingredients": "Oranges, fleur d'oranger, pistaches, menthe, sorbet menthe",
+            "prix": 12,
+            "tags": [
+                "vegetarien",
+                "vegan",
+                "halal",
+                "sucre"
+            ],
+            "nb_commandes": 21,
+            "actif": true
+        },
+        {
+            "id": 12,
+            "categorie": "Douceurs",
+            "nom": "Perle de Gazelle",
+            "allergenes": "1,3,7,8",
+            "desc": "Réinterprétation de la pâtisserie fine, crème légère au miel et amande.",
+            "ingredients": "Pâte d'amande, miel, beurre, farine, œuf, fleur d'oranger",
+            "prix": 13,
+            "tags": [
+                "vegetarien",
+                "halal",
+                "sucre"
+            ],
+            "nb_commandes": 33,
+            "actif": true
+        },
+        {
+            "id": 13,
+            "categorie": "Douceurs",
+            "nom": "Le Thé Gourmand",
+            "allergenes": "1,7,8",
+            "desc": "Thé à la menthe traditionnelle accompagné de trois créations du Chef.",
+            "ingredients": "Thé vert, menthe fraîche, sucre, mignardises variées",
+            "prix": 15,
+            "tags": [
+                "vegetarien",
+                "halal",
+                "sucre"
+            ],
+            "nb_commandes": 42,
+            "actif": true
+        },
+        {
+            "id": 14,
+            "categorie": "Douceurs",
+            "nom": "Makrout aux Dattes",
+            "allergenes": "1",
+            "desc": "Semoule au miel et cœur de dattes fondantes.",
+            "ingredients": "Semoule fine, dattes, miel, eau de fleur d'oranger, cannelle",
+            "prix": 10,
+            "tags": [
+                "vegetarien",
+                "halal",
+                "sucre"
+            ],
+            "nb_commandes": 19,
+            "actif": true
+        },
+        {
+            "id": 15,
+            "categorie": "Douceurs",
+            "nom": "Salade de Fruits Orientale",
+            "allergenes": "",
+            "desc": "Fruits de saison, sirop à la fleur d'oranger.",
+            "ingredients": "Oranges, grenade, figues, dattes, fleur d'oranger, menthe",
+            "prix": 11,
+            "tags": [
+                "vegetarien",
+                "vegan",
+                "halal",
+                "sans-gluten",
+                "sucre"
+            ],
+            "nb_commandes": 15,
+            "actif": true
+        }
+    ],
+    "menus": [
+        {
+            "id": 1,
+            "nom": "Sahara",
+            "desc": "Le voyage essentiel : entrée, plat et dessert au choix dans la carte. Une découverte authentique de nos saveurs.",
+            "prix": 45,
+            "nb_services": 3,
+            "structure": "Entrée + Plat + Dessert",
+            "actif": true
+        },
+        {
+            "id": 2,
+            "nom": "Quintessence",
+            "desc": "Menu dégustation en 5 temps : amuse-bouche du Chef, entrée raffinée, plat signature, trou normand, dessert d'inspiration.",
+            "prix": 75,
+            "nb_services": 5,
+            "structure": "Amuse-bouche + Entrée + Plat + Trou normand + Dessert",
+            "actif": true
+        },
+        {
+            "id": 3,
+            "nom": "L'Éclipse",
+            "desc": "Menu Prestige en 7 services avec accord mets & vins.",
+            "prix": 110,
+            "nb_services": 7,
+            "structure": "Mise en bouche + Entrée froide + Entrée chaude + Sorbet + Plat + Douceurs + Mignardises",
+            "actif": true
+        }
+    ],
+    "commandes": [
+        {
+            "id": 1,
+            "id_client": 5,
+            "client": "Jean Dupont",
+            "articles": [
+                {
+                    "nom": "Couscous Royal",
+                    "prix": 29,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 29,
+            "montant_paye": 29,
+            "statut": "Livrée",
+            "type": "livraison",
+            "id_livreur": 4,
+            "heure": "19:30",
+            "date": "10\/05\/2026",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "10\/05\/2026",
+            "heure_prevue": "19:30"
+        },
+        {
+            "id": 2,
+            "id_client": 6,
+            "client": "Sophie Martin",
+            "articles": [
+                {
+                    "nom": "Tajine d'Or de Casablanca",
+                    "prix": 28,
+                    "quantite": 1,
+                    "type": "plat"
+                },
+                {
+                    "nom": "Le Thé Gourmand",
+                    "prix": 15,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 43,
+            "montant_paye": 43,
+            "statut": "Payée",
+            "type": "livraison",
+            "id_livreur": null,
+            "heure": "20:00",
+            "date": "11\/05\/2026",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "11\/05\/2026",
+            "heure_prevue": "20:00"
+        },
+        {
+            "id": 3,
+            "id_client": 7,
+            "client": "Luc Bernard",
+            "articles": [
+                {
+                    "nom": "Le Couscous Signature",
+                    "prix": 32,
+                    "quantite": 1,
+                    "type": "plat"
+                },
+                {
+                    "nom": "Méchouia Fumée",
+                    "prix": 14,
+                    "quantite": 1,
+                    "type": "plat"
+                },
+                {
+                    "nom": "Perle de Gazelle",
+                    "prix": 13,
+                    "quantite": 2,
+                    "type": "plat"
+                }
+            ],
+            "total": 72,
+            "montant_paye": 72,
+            "statut": "Livrée",
+            "type": "livraison",
+            "id_livreur": 4,
+            "heure": "12:30",
+            "date": "12\/05\/2026",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "12\/05\/2026",
+            "heure_prevue": "12:30"
+        },
+        {
+            "id": 4,
+            "id_client": 8,
+            "client": "Emma Petit",
+            "articles": [
+                {
+                    "nom": "Couscous Royal",
+                    "prix": 29,
+                    "quantite": 2,
+                    "type": "plat"
+                }
+            ],
+            "total": 58,
+            "montant_paye": 58,
+            "statut": "En livraison",
+            "type": "livraison",
+            "id_livreur": 4,
+            "heure": "13:00",
+            "date": "12\/05\/2026",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "12\/05\/2026",
+            "heure_prevue": "13:00"
+        },
+        {
+            "id": 5,
+            "id_client": 9,
+            "client": "Paul Robert",
+            "articles": [
+                {
+                    "nom": "Tajine Kefta aux Œufs",
+                    "prix": 24,
+                    "quantite": 1,
+                    "type": "plat"
+                },
+                {
+                    "nom": "L'Orange de Marrakech",
+                    "prix": 12,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 36,
+            "montant_paye": 36,
+            "statut": "Livrée",
+            "type": "livraison",
+            "id_livreur": 4,
+            "heure": "19:00",
+            "date": "18\/05\/2026",
+            "note": false,
+            "notes": null,
+            "heure_livraison": "10:58",
+            "preparation_immediate": true,
+            "date_prevue": "18\/05\/2026",
+            "heure_prevue": "19:00"
+        },
+        {
+            "id": 6,
+            "id_client": 5,
+            "client": "Jean Dupont",
+            "articles": [
+                {
+                    "nom": "Menu Sahara",
+                    "prix": 45,
+                    "quantite": 1,
+                    "type": "menu"
+                }
+            ],
+            "total": 45,
+            "montant_paye": 45,
+            "statut": "Payée",
+            "type": "livraison",
+            "id_livreur": null,
+            "date": "18\/05\/2026",
+            "heure": "10:57",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "18\/05\/2026",
+            "heure_prevue": "10:57"
+        },
+        {
+            "id": 7,
+            "id_client": 5,
+            "client": "Jean Dupont",
+            "articles": [
+                {
+                    "nom": "Méchouia Fumée",
+                    "prix": 14,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 14,
+            "montant_paye": 14,
+            "statut": "Payée",
+            "type": "livraison",
+            "id_livreur": null,
+            "date": "02\/06\/2026",
+            "heure": "14:47",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "02\/06\/2026",
+            "heure_prevue": "14:47"
+        },
+        {
+            "id": 8,
+            "id_client": 6,
+            "client": "Sophie Martin",
+            "articles": [
+                {
+                    "nom": "Le Couscous Signature",
+                    "prix": 32,
+                    "quantite": 1,
+                    "type": "plat"
+                },
+                {
+                    "nom": "Perle de Gazelle",
+                    "prix": 13,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 45,
+            "montant_paye": 45,
+            "statut": "Prête",
+            "type": "livraison",
+            "id_livreur": null,
+            "date": "05\/06\/2026",
+            "heure": "12:30",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "05\/06\/2026",
+            "heure_prevue": "12:30"
+        },
+        {
+            "id": 9,
+            "id_client": 7,
+            "client": "Luc Bernard",
+            "articles": [
+                {
+                    "nom": "Tajine d'Or de Casablanca",
+                    "prix": 28,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 28,
+            "montant_paye": 28,
+            "statut": "En préparation",
+            "type": "livraison",
+            "id_livreur": null,
+            "date": "05\/06\/2026",
+            "heure": "13:15",
+            "note": false,
+            "notes": null,
+            "preparation_immediate": true,
+            "date_prevue": "05\/06\/2026",
+            "heure_prevue": "13:15"
+        },
+        {
+            "id": 10,
+            "id_client": 6,
+            "client": "Sophie Martin",
+            "articles": [
+                {
+                    "nom": "Le Couscous Signature",
+                    "prix": 32,
+                    "quantite": 2,
+                    "type": "plat"
+                },
+                {
+                    "nom": "Le Thé Gourmand",
+                    "prix": 15,
+                    "quantite": 1,
+                    "type": "plat"
+                }
+            ],
+            "total": 79,
+            "montant_paye": 79,
+            "statut": "Payée",
+            "type": "livraison",
+            "id_livreur": null,
+            "date": "05\/06\/2026",
+            "heure": "15:30",
+            "date_prevue": "06\/06\/2026",
+            "heure_prevue": "20:00",
+            "preparation_immediate": false,
+            "note": false,
+            "notes": null
+        }
+    ],
+    "tickets": [
+        {
+            "id": 1,
+            "id_client": 5,
+            "montant": 14,
+            "date": "11\/05\/2026",
+            "utilise": false
+        }
+    ],
+    "logs": [
+        {
+            "id": 1,
+            "date": "18\/05\/2026 02:38:50",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : resto@arcades.fr",
+            "user_id": 3,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 2,
+            "date": "18\/05\/2026 02:39:55",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : livreur@arcades.fr",
+            "user_id": 4,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 3,
+            "date": "18\/05\/2026 02:40:46",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : client1@test.com",
+            "user_id": 5,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 4,
+            "date": "18\/05\/2026 02:42:39",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : admin1@arcades.fr",
+            "user_id": 1,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 5,
+            "date": "18\/05\/2026 10:56:01",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : client1@test.com",
+            "user_id": 5,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 6,
+            "date": "18\/05\/2026 10:58:17",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : livreur@arcades.fr",
+            "user_id": 4,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 7,
+            "date": "18\/05\/2026 10:59:10",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : resto@arcades.fr",
+            "user_id": 3,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 8,
+            "date": "02\/06\/2026 14:35:39",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : admin1@arcades.fr",
+            "user_id": 1,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 9,
+            "date": "02\/06\/2026 14:36:27",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : resto@arcades.fr",
+            "user_id": 3,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 10,
+            "date": "02\/06\/2026 14:46:02",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : livreur@arcades.fr",
+            "user_id": 4,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 11,
+            "date": "02\/06\/2026 14:46:25",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : client1@test.com",
+            "user_id": 5,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 12,
+            "date": "02\/06\/2026 14:47:32",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : livreur@arcades.fr",
+            "user_id": 4,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 13,
+            "date": "06\/06\/2026 11:05:46",
+            "type": "connexion_echec",
+            "message": "Tentative échouée : client3@test.com",
+            "user_id": null,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        },
+        {
+            "id": 14,
+            "date": "06\/06\/2026 11:05:51",
+            "type": "connexion_ok",
+            "message": "Connexion réussie : client3@test.com",
+            "user_id": 7,
+            "ip": "127.0.0.1",
+            "ua": "Mozilla\/5.0 (X11; Linux x86_64; rv:142.0) Gecko\/20100101 Firefox\/142.0"
+        }
+    ],
+    "id_counters": {
+        "user": 9,
+        "plat": 15,
+        "menu": 3,
+        "commande": 10,
+        "ticket": 1,
+        "log": 14
+    }
+}
